@@ -67,7 +67,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink)
   padding:18px 28px 12px;
   border-bottom:1px solid var(--line2);
   background:var(--bg);
-  position:sticky;top:85px;z-index:100;
+  position:sticky;top:var(--header-h,85px);z-index:100;
 }
 .day-badge{
   background:var(--orange);color:#fff;
@@ -77,7 +77,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink)
 .day-head-text{font-size:15px;font-weight:700;}
 .day-head-sub{font-size:12px;color:var(--ink3);font-family:'DM Mono',monospace;}
 
-.table-scroll{overflow-x:auto;padding:0 28px 16px;}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 28px 16px;}
 table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
 thead tr{background:var(--ink);}
 thead th{
@@ -113,7 +113,7 @@ td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
 /* ════ PERSONAL ════ */
 .personal-wrap{padding:0 28px 80px;}
 .person-selector{
-  position:sticky;top:85px;z-index:100;
+  position:sticky;top:var(--header-h,85px);z-index:100;
   background:var(--bg);border-bottom:1px solid var(--line2);
   padding:14px 28px;margin:0 -28px;
   box-shadow:0 2px 8px rgba(0,0,0,.06);
@@ -292,16 +292,110 @@ td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
 .rule-icon.red{background:#c0392b;}
 .rule-text{font-size:13px;color:var(--ink2);line-height:1.6;}
 
+/* ── MOBILE (≤600px) ─────────────────────────────────── */
 @media(max-width:600px){
-  .header{padding:14px 16px 0;}
-  .main-tabs{margin:0 -16px;}
-  .day-section-head{padding:14px 16px 10px;top:80px;}
-  .table-scroll{padding:0 16px 12px;}
-  .personal-wrap,.info-page{padding-left:16px;padding-right:16px;}
-  .person-selector{padding:12px 16px;margin:0 -16px;top:80px;}
-  .slot-row{grid-template-columns:85px 1fr;}
+  /* === Header === */
+  .header{padding:8px 14px 0;}
+  .header-top{padding-bottom:6px;gap:8px;}
+  .logo-tag{font-size:9px;}
+  .logo-title{font-size:17px;}
+  .logo-sub{font-size:10px;}
   .header-meta{display:none;}
-  .sched-item{grid-template-columns:110px 1fr;}
+  .main-tabs{margin:0 -14px;}
+  .main-tab{padding:8px 12px;font-size:11.5px;}
+
+  /* === Page padding === */
+  .personal-wrap{padding:0 14px 60px;}
+  .info-page{padding:18px 14px 60px;}
+  .info-section{margin-bottom:22px;}
+
+  /* === Overview day-head === */
+  .day-section-head{padding:10px 14px 8px;gap:8px;}
+  .table-scroll{padding:0 0 12px;margin:0 -14px;}
+  table{font-size:12px;}
+  thead th{font-size:9px;padding:7px 8px;}
+  td{padding:7px 8px;}
+  td.t-time{font-size:10px;min-width:80px;}
+  td.t-owners{min-width:140px;}
+
+  /* === Person selector === */
+  .person-selector{padding:10px 14px;margin:0 -14px;}
+  .selector-label{font-size:9px;margin-bottom:7px;}
+  .person-btns{gap:5px;}
+  .pbtn{padding:9px 11px;font-size:12px;min-height:40px;}
+
+  /* === Person header === */
+  .person-content{padding-top:14px;}
+  .person-header{padding:14px 16px;gap:12px;margin-bottom:20px;}
+  .person-avatar{width:44px;height:44px;font-size:16px;}
+  .person-name{font-size:18px;}
+  .person-role{font-size:12px;}
+
+  /* === Slot row: 時間移到上方，內容在下 === */
+  .slot-row{
+    grid-template-columns:1fr;
+    margin-bottom:8px;
+    border-radius:6px;
+  }
+  .slot-time{
+    border-right:none;
+    border-bottom:1px solid var(--orange-bd);
+    padding:7px 14px;
+    justify-content:flex-start;
+    font-size:11px;
+  }
+  .slot-body{padding:10px 14px 12px;}
+  .slot-task{font-size:13px;}
+  .slot-detail{font-size:12px;}
+  .chip{font-size:10px;padding:2px 7px;}
+
+  /* is-free: 更輕量 */
+  .is-free .slot-time{
+    background:transparent;
+    border-bottom:none;
+    padding:8px 14px;
+  }
+  .is-free .slot-body{padding:4px 14px 8px;}
+
+  /* === 行程概觀 schedule items: 垂直堆疊 === */
+  .sched-item{
+    grid-template-columns:1fr;
+    padding:10px 2px;
+    gap:2px;
+  }
+  .sched-time{font-size:11px;margin-bottom:2px;}
+
+  /* === Overview cards: 2 欄 === */
+  .overview-cards{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .ov-card{padding:11px 12px;}
+  .ov-card-label{font-size:9px;}
+  .ov-card-val{font-size:14px;}
+  .ov-card-sub{font-size:11px;}
+
+  /* === Teacher cards: 1 欄 === */
+  .teacher-cards{grid-template-columns:1fr;}
+
+  /* === Ticket: 2 欄 === */
+  .ticket-grid{grid-template-columns:repeat(2,1fr);}
+  .ticket-price{font-size:18px;}
+
+  /* === Staff / Booth: 1 欄 === */
+  .staff-grid{grid-template-columns:1fr;}
+  .booth-grid{grid-template-columns:1fr;}
+  .staff-card{padding:14px;}
+
+  /* === Price tables: scrollable === */
+  .price-table,.gifts-table{font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .price-table th,.gifts-table th{font-size:9px;padding:6px 8px;}
+  .price-table td,.gifts-table td{padding:7px 8px;}
+
+  /* === Rules === */
+  .rule-item{padding:10px 12px;}
+  .rule-text{font-size:12px;}
+
+  /* === Day block === */
+  .day-block{margin-bottom:24px;}
+  .day-block-title{margin-bottom:12px;}
 }
 </style>
 </head>
@@ -1426,6 +1520,17 @@ RADIO_LIST.forEach((person, i) => {
   `;
   radioList.appendChild(row);
 });
+
+// ════════════════════════════════════════
+//  HEADER HEIGHT → CSS variable (sticky top)
+// ════════════════════════════════════════
+function updateHeaderH(){
+  const h = document.querySelector('.header').offsetHeight;
+  document.documentElement.style.setProperty('--header-h', h + 'px');
+}
+window.addEventListener('resize', updateHeaderH);
+document.addEventListener('DOMContentLoaded', updateHeaderH);
+updateHeaderH();
 
 // ════════════════════════════════════════
 //  TAB SWITCH
