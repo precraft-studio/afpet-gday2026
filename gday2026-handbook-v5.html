@@ -292,6 +292,13 @@ td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
 .rule-icon.red{background:#c0392b;}
 .rule-text{font-size:13px;color:var(--ink2);line-height:1.6;}
 
+/* ── 繳回對講機：紅色警示 ── */
+.is-warn{border-left:3px solid #c0392b !important;}
+.is-warn .slot-time{background:#fff0ee;color:#c0392b;}
+.is-warn .slot-task{color:#c0392b;font-weight:900;}
+.is-warn .slot-detail{color:#c0392b;}
+.is-warn .slot-body{background:#fff8f7;}
+
 /* ── MOBILE (≤600px) ─────────────────────────────────── */
 @media(max-width:600px){
   /* === Header === */
@@ -860,6 +867,7 @@ const PEOPLE = [
       {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
       {type:'task', t:'14:40 – 18:00', f:'接待', d:'接待貴賓、廠商聯繫、控台螢幕切換', p:'全場'},
       {type:'task', t:'18:00', f:'集合散場', d:'對講機回收，確認撤場', p:'控台'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:15', f:'設備測試', d:'PPT 播放、音響、手麥、攝影機、燈光確認', p:'舞台區'},
@@ -868,6 +876,7 @@ const PEOPLE = [
       {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
       {type:'task', t:'14:40 – 17:50', f:'接待', d:'接待貴賓、廠商聯繫、控台螢幕切換', p:'全場'},
       {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認', n:'計程車（預計）'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'jennifer', name:'Jennifer', avatar:'J', role:'接待、廠商聯繫', area:'全場',
@@ -879,6 +888,7 @@ const PEOPLE = [
       {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
       {type:'task', t:'14:40 – 18:00', f:'接待', d:'接待貴賓、廠商聯繫', p:'全場'},
       {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'全場'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:30', f:'進場準備', d:'進場集合，協助廠商接洽', p:'全場'},
@@ -887,6 +897,7 @@ const PEOPLE = [
       {type:'task', t:'14:40 – 17:50', f:'接待', d:'接待貴賓、廠商聯繫', p:'全場'},
       {type:'task', t:'17:50 – 18:15', f:'收場', d:'協助確認撤場', p:'全場'},
       {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'kevin', name:'Kevin', avatar:'K', role:'老師接待、學員報到、課程場邊協助', area:'休息室 · 報到區 · 舞台',
@@ -908,6 +919,7 @@ const PEOPLE = [
       {type:'task', t:'17:25 – 17:50', f:'學員合照引導', d:'引導學員上台和老師合照，一次 5-6 位，提醒只能拍照不能問問題', p:'舞台'},
       {type:'task', t:'17:50 – 18:00', f:'休息室整理', d:'休息室環境整理', p:'休息室'},
       {type:'task', t:'18:00', f:'集合散場', d:'對講機回收確認', p:'控台'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'free', t:'11:00 – 11:15', f:'自由時間', d:''},
@@ -924,6 +936,7 @@ const PEOPLE = [
       {type:'task', t:'17:20 – 17:25', f:'老師合照場邊', d:'場邊協助', p:'舞台場邊'},
       {type:'task', t:'17:25 – 17:50', f:'學員合照引導', d:'引導學員上台和老師合照，一次 5-6 位，只能拍照不能問問題', p:'舞台'},
       {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認', n:'計程車（預計）'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'xiao-zhi', name:'小隻', avatar:'隻', role:'主持人 · Balmoni 電剪銷售', area:'舞台 · Balmoni 電剪',
@@ -980,6 +993,7 @@ const PEOPLE = [
       {type:'task', t:'17:20 – 17:25', f:'老師合照拍攝', d:'老師＋模特犬合照攝影', p:'舞台＋觀眾區'},
       {type:'task', t:'17:25 – 17:50', f:'學員合照拍攝', d:'學員上台和老師拍照攝影', p:'舞台'},
       {type:'task', t:'18:00', f:'集合散場', d:'確認今日素材', p:'—'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:30', f:'攝影師交接', d:'與第二位攝影師報到交接，分配拍攝動線', p:'全場'},
@@ -991,6 +1005,7 @@ const PEOPLE = [
       {type:'free', t:'16:00 – 17:20', f:'自由時間', d:''},
       {type:'task', t:'17:20 – 17:25', f:'老師合照拍攝', d:'老師＋模特犬合照攝影', p:'舞台'},
       {type:'task', t:'17:25 – 17:50', f:'學員合照拍攝', d:'學員上台和老師拍照攝影', p:'舞台'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'mei', name:'Mei', avatar:'M', role:'RENADOG 銷售 · 入場時支援 QIX · QA 遞麥', area:'Renadog 攤位',
@@ -1008,6 +1023,7 @@ const PEOPLE = [
       {type:'task', t:'17:10 – 17:20', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
       {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
       {type:'task', t:'18:00', f:'集合散場', d:'攤位整理，確認收場', p:'Renadog 攤位'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:15', f:'攤位準備', d:'RENADOG ＋ QIX 攤位準備就緒', p:'Renadog 攤位'},
@@ -1021,6 +1037,7 @@ const PEOPLE = [
       {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
       {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'Renadog 攤位備品裝箱打包', p:'Renadog 攤位'},
       {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'kalen', name:'Kalen', avatar:'K', role:'RENADOG 銷售 · QA 遞麥', area:'Renadog 攤位',
@@ -1072,6 +1089,7 @@ const PEOPLE = [
       {type:'task', t:'17:50', f:'離場提醒', d:'場邊提醒學員離場時間', p:'場邊'},
       {type:'task', t:'17:50 – 18:00', f:'環境整理', d:'舞台、走廊垃圾桶清理', p:'舞台、走廊'},
       {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'—'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:15', f:'舞台 ＋ 休息室準備', d:'舞台工具確認；休息室備妥水、點心、垃圾桶、工具', p:'舞台＋休息室'},
@@ -1084,6 +1102,7 @@ const PEOPLE = [
       {type:'task', t:'17:25 – 17:50', f:'結帳區支援', d:'支援結帳區尾場作業', p:'結帳區'},
       {type:'task', t:'17:50 – 18:15', f:'環境整理 ＋ 打包', d:'舞台收拾、休息室整理、垃圾分類；協助打包裝箱', p:'舞台、休息室'},
       {type:'task', t:'18:30 –', f:'撤場點交', d:'與 Kent 完成撤場點交', p:'—'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'ting', name:'廷廷', avatar:'廷', role:'入口蓋章 · QIX 銷售', area:'入口 · QIX 攤位',
@@ -1101,6 +1120,7 @@ const PEOPLE = [
       {type:'task', t:'15:10 – 17:25', f:'QIX 銷售', d:'持續銷售', p:'QIX 攤位'},
       {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
       {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'QIX 攤位'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:15', f:'禮物袋定位 ＋ 攤位準備', d:'禮物袋擺放到椅子上；QIX 攤位準備就緒', p:'觀眾區 ↔ QIX 攤位'},
@@ -1114,6 +1134,7 @@ const PEOPLE = [
       {type:'task', t:'17:30 – 18:00', f:'座位區收拾', d:'確認垃圾、回收手寫板', p:'觀眾區'},
       {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'QIX 攤位備品裝箱打包', p:'QIX 攤位'},
       {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'lin', name:'奕霖', avatar:'霖', role:'入口蓋章 · QIX 銷售', area:'入口 · QIX 攤位',
@@ -1158,6 +1179,7 @@ const PEOPLE = [
       {type:'task', t:'15:10 – 17:10', f:'收銀 · 取貨 ＋ 移動禮物袋', d:'持續收銀取貨；協助把 5/6 禮物袋移到結帳區', p:'結帳區'},
       {type:'task', t:'17:25 – 17:50', f:'尾場收銀 · 取貨', d:'尾場銷售時段收銀取貨', p:'結帳區'},
       {type:'task', t:'18:00', f:'集合散場', d:'結帳區整理收場', p:'結帳區'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'11:00 – 11:15', f:'攤位準備', d:'結帳區準備就緒', p:'結帳區'},
@@ -1169,6 +1191,7 @@ const PEOPLE = [
       {type:'task', t:'15:10 – 17:50', f:'收銀 · 取貨', d:'持續收銀取貨', p:'結帳區'},
       {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'結帳區開始部分整理', p:'結帳區'},
       {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'結帳區備品裝箱打包', p:'結帳區'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'nuo', name:'阿諾', avatar:'諾', role:'收銀 · 取貨', area:'結帳區',
@@ -1204,6 +1227,7 @@ const PEOPLE = [
       {type:'task', t:'14:40 – 17:50', f:'剪刀銷售 ＋ 控台螢幕切換', d:'銷售 Balmoni 剪刀；同時負責控台螢幕切換', p:'Balmoni 剪刀'},
       {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售剪刀', p:'Balmoni 剪刀'},
       {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'Balmoni 剪刀'},
+      {type:'task', t:'18:00', f:'繳回對講機', d:'將對講機歸還至控台', p:'控台', warn:true},
     ]},
     { date:'5/6', label:'DAY 2', slots:[
       {type:'task', t:'08:00 – 11:15', f:'洗模特犬', d:'DNS 沙龍洗模特犬（家長直送到店）', p:'DNS 寵物沙龍'},
@@ -1215,6 +1239,7 @@ const PEOPLE = [
       {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售剪刀', p:'Balmoni 剪刀'},
       {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'剪刀攤位備品裝箱打包', p:'Balmoni 剪刀'},
       {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+      {type:'task', t:'18:30', f:'繳回對講機', d:'將對講機歸還至控台，雨幕前完成', p:'控台', warn:true},
     ]},
    ]},
  { key:'tong', name:'彤彤', avatar:'彤', role:'洗模特犬 · 剪刀銷售', area:'DNS → Balmoni 剪刀',
@@ -1366,7 +1391,7 @@ function selectPerson(key){
     day.slots.forEach(slot=>{
       if(slot.type!=='task') return;
       html+=`
-        <div class="slot-row is-task">
+        <div class="slot-row is-task${slot.warn?' is-warn':''}">
           <div class="slot-time">${slot.t||'—'}</div>
           <div class="slot-body">
             <div class="slot-phase">${slot.f||''}</div>
