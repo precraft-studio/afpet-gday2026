@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GDAY 2026 內勤手冊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #faf6ee;
+  --bg2:      #fff9f0;
+  --bg3:      #f3ede0;
+  --orange:   #b5460f;
+  --orange-lt:#fff3e8;
+  --orange-bd:#e8c4a0;
+  --ink:      #1a1209;
+  --ink2:     #3d3020;
+  --ink3:     #8a7d6b;
+  --line:     #ddd4c0;
+  --line2:    #ccc0a8;
+  --gold:     #c9983a;
+  --gold-lt:  #fff8e8;
+  --green:    #2a5c45;
+  --green-lt: #e8f4ef;
+  --yellow-lt:#fffbea;
+  --yellow-bd:#e8d87a;
+  --hl-bg:    #e8f4ef;
+  --hl-border:#2a5c45;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
+
+/* ── HEADER ── */
+.header{
+  background:var(--ink);
+  border-bottom:3px solid var(--gold);
+  padding:16px 28px 0;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:12px;}
+.logo-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:3px;}
+.logo-title{font-size:22px;font-weight:900;letter-spacing:-.01em;line-height:1;color:#faf6ee;}
+.logo-title span{color:var(--gold);}
+.logo-sub{font-size:11px;color:#b0a080;font-family:'DM Mono',monospace;margin-top:3px;}
+.header-meta{text-align:right;font-family:'DM Mono',monospace;font-size:11px;color:#b0a080;line-height:1.9;}
+.header-meta strong{color:var(--gold);}
+.main-tabs{display:flex;margin:0 -28px;overflow-x:auto;}
+.main-tab{
+  flex-shrink:0;
+  padding:11px 18px;
+  background:none;border:none;border-bottom:3px solid transparent;
+  color:#b0a080;font-family:'Noto Sans TC',sans-serif;
+  font-size:13px;font-weight:500;cursor:pointer;
+  margin-bottom:-3px;transition:all .18s;letter-spacing:.02em;white-space:nowrap;
+}
+.main-tab.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:700;}
+.main-tab:hover:not(.active){color:#faf6ee;background:rgba(255,255,255,.05);}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ════ OVERVIEW ════ */
+.day-section-head{
+  display:flex;align-items:center;gap:12px;
+  padding:18px 28px 12px;
+  border-bottom:1px solid var(--line2);
+  background:var(--bg);
+  position:sticky;top:85px;z-index:100;
+}
+.day-badge{
+  background:var(--orange);color:#fff;
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:3px 10px;border-radius:3px;letter-spacing:.1em;
+}
+.day-head-text{font-size:15px;font-weight:700;}
+.day-head-sub{font-size:12px;color:var(--ink3);font-family:'DM Mono',monospace;}
+
+.table-scroll{overflow-x:auto;padding:0 28px 16px;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+thead tr{background:var(--ink);}
+thead th{
+  padding:9px 11px;text-align:left;
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.12em;color:#c8bfaa;
+  white-space:nowrap;border-bottom:2px solid var(--gold);
+}
+tbody tr{border-bottom:1px solid var(--line);}
+tbody tr:hover{background:var(--bg3);}
+tbody tr.phase-row td{
+  background:var(--orange-lt);
+  color:var(--orange);font-weight:700;font-size:12px;
+  padding:7px 11px;border-bottom:1px solid var(--orange-bd);
+  letter-spacing:.06em;border-top:4px solid var(--orange-bd);
+}
+td{padding:9px 11px;vertical-align:top;line-height:1.55;}
+td.t-time{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--orange);white-space:nowrap;font-weight:500;min-width:110px;}
+td.t-flow{font-weight:600;color:var(--ink);min-width:90px;}
+td.t-detail{color:var(--ink2);max-width:260px;}
+td.t-pos{color:var(--ink3);font-size:12px;white-space:nowrap;}
+td.t-owners{min-width:200px;}
+td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
+.otag{
+  display:inline-block;padding:2px 7px;border-radius:3px;
+  font-size:11px;margin:1px 2px 1px 0;
+  background:var(--bg3);color:var(--ink3);
+  font-family:'DM Mono',monospace;white-space:nowrap;
+  border:1px solid var(--line2);
+}
+.otag.hl{background:var(--orange);color:#fff;border-color:var(--orange);font-weight:600;}
+
+/* ════ PERSONAL ════ */
+.personal-wrap{padding:0 28px 80px;}
+.person-selector{
+  position:sticky;top:85px;z-index:100;
+  background:var(--bg);border-bottom:1px solid var(--line2);
+  padding:14px 28px;margin:0 -28px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.selector-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.15em;color:var(--ink3);
+  text-transform:uppercase;margin-bottom:10px;
+}
+.person-btns{display:flex;flex-wrap:wrap;gap:7px;}
+.pbtn{
+  padding:7px 14px;background:var(--bg2);
+  border:1.5px solid var(--line2);color:var(--ink2);
+  font-family:'Noto Sans TC',sans-serif;font-size:13px;font-weight:500;
+  cursor:pointer;border-radius:4px;transition:all .15s;
+}
+.pbtn:hover{border-color:var(--orange);color:var(--orange);}
+.pbtn.active{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700;}
+
+/* 個人內容 */
+.person-content{padding-top:24px;}
+.person-header{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 24px;background:var(--bg2);
+  border:1px solid var(--line2);border-left:4px solid var(--orange);
+  border-radius:0 6px 6px 0;margin-bottom:28px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.person-avatar{
+  width:52px;height:52px;border-radius:6px;
+  background:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:900;color:#fff;flex-shrink:0;
+}
+.person-name{font-size:20px;font-weight:900;margin-bottom:3px;}
+.person-role{font-size:13px;color:var(--ink3);margin-bottom:6px;}
+.person-area{
+  display:inline-block;
+  background:var(--orange-lt);border:1px solid var(--orange-bd);
+  color:var(--orange);font-size:11px;
+  padding:2px 8px;border-radius:3px;
+  font-family:'DM Mono',monospace;
+}
+
+/* 每日區塊 */
+.day-block{margin-bottom:36px;}
+.day-block-title{
+  display:flex;align-items:center;gap:10px;
+  border-bottom:2px solid var(--line2);
+  padding-bottom:10px;margin-bottom:16px;
+}
+.day-block-badge{
+  background:var(--orange);color:#fff;
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:3px 10px;border-radius:3px;letter-spacing:.1em;
+}
+.day-block-label{font-size:14px;font-weight:700;color:var(--ink2);}
+
+/* 時段行 */
+.slot-row{
+  display:grid;grid-template-columns:130px 1fr;
+  border:1px solid var(--line);border-radius:4px;
+  margin-bottom:6px;overflow:hidden;background:var(--bg2);
+  transition:box-shadow .15s;
+}
+.slot-row:hover{box-shadow:0 2px 10px rgba(0,0,0,.08);}
+.slot-row.is-task{border-left:3px solid var(--orange);}
+
+.slot-time{
+  padding:13px 12px;
+  font-family:'DM Mono',monospace;font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;line-height:1.4;
+  border-right:1px solid var(--line);
+  color:var(--orange);font-weight:600;background:var(--orange-lt);
+}
+
+.slot-body{padding:13px 16px;}
+.slot-phase{
+  font-size:10px;font-family:'DM Mono',monospace;
+  color:var(--ink3);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:3px;
+}
+.is-free .slot-phase{color:var(--free-txt);}
+.slot-task{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--ink);}
+.is-free .slot-task{font-size:13px;font-weight:400;color:var(--free-txt);font-style:italic;}
+.slot-detail{font-size:13px;color:var(--ink2);line-height:1.55;margin-bottom:6px;}
+.is-free .slot-detail{display:none;}
+.slot-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.chip{font-size:11px;padding:3px 9px;border-radius:3px;font-family:'DM Mono',monospace;}
+.chip-pos{background:var(--bg3);border:1px solid var(--line2);color:var(--ink3);}
+.chip-note{background:var(--yellow-lt);border:1px solid var(--yellow-bd);color:#7a5c00;}
+
+/* 時段分隔線 */
+.time-divider{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 0;color:var(--free-txt);
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;
+}
+.time-divider::before,.time-divider::after{content:'';flex:1;height:1px;background:var(--line);}
+
+.placeholder{
+  padding:60px 0;text-align:center;color:var(--ink3);
+}
+.placeholder-icon{font-size:36px;margin-bottom:10px;opacity:.5;}
+.placeholder-text{font-size:14px;letter-spacing:.03em;}
+
+/* ════ 新分頁通用 ════ */
+.info-page{padding:28px 28px 60px;}
+.info-section{margin-bottom:36px;}
+.info-section-title{
+  font-size:13px;font-weight:700;letter-spacing:.08em;
+  color:var(--orange);text-transform:uppercase;
+  font-family:'DM Mono',monospace;
+  border-bottom:2px solid var(--orange-bd);
+  padding-bottom:8px;margin-bottom:16px;
+}
+/* 總覽卡片 */
+.overview-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:24px;}
+.ov-card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:18px 20px;border-top:3px solid var(--gold);}
+.ov-card-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--ink3);text-transform:uppercase;margin-bottom:6px;}
+.ov-card-val{font-size:16px;font-weight:700;color:var(--ink);line-height:1.4;}
+.ov-card-sub{font-size:12px;color:var(--ink3);margin-top:4px;}
+/* 老師卡片 */
+.teacher-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.tc-card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:20px;border-left:4px solid var(--gold);}
+.tc-name{font-size:15px;font-weight:900;margin-bottom:3px;}
+.tc-topic{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:6px;}
+.tc-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
+/* 票價 */
+.ticket-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+.ticket-item{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px;text-align:center;}
+.ticket-label{font-size:12px;color:var(--ink3);margin-bottom:4px;}
+.ticket-price{font-size:20px;font-weight:900;color:var(--orange);}
+/* 行程 */
+.schedule-day{margin-bottom:28px;}
+.sched-day-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.sched-day-badge{background:var(--ink);color:var(--gold);font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:3px;letter-spacing:.08em;}
+.sched-day-label{font-size:14px;font-weight:700;color:var(--ink2);}
+.sched-item{display:grid;grid-template-columns:140px 1fr;border-bottom:1px solid var(--line);padding:8px 0;}
+.sched-time{font-family:'DM Mono',monospace;font-size:12px;color:var(--orange);font-weight:500;}
+.sched-task{font-size:13px;color:var(--ink2);line-height:1.5;}
+.sched-who{font-size:11px;color:var(--ink3);margin-top:2px;}
+/* 場地 */
+.venue-map{background:var(--bg2);border:1px solid var(--line2);border-radius:6px;padding:24px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.8;overflow-x:auto;margin-bottom:20px;}
+.venue-map pre{white-space:pre;color:var(--ink2);}
+.booth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.booth-card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px;}
+.booth-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+.booth-meta{font-size:12px;color:var(--ink3);margin-bottom:4px;}
+.booth-who{font-size:12px;color:var(--green);font-weight:600;}
+/* 人員分工 */
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.staff-card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:16px;border-left:3px solid var(--gold);}
+.staff-avatar-name{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.staff-avatar{width:36px;height:36px;border-radius:4px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0;}
+.staff-name{font-size:15px;font-weight:700;}
+.staff-role{font-size:12px;color:var(--ink3);margin-bottom:4px;}
+.staff-area-badge{display:inline-block;background:var(--orange-lt);border:1px solid var(--orange-bd);color:var(--orange);font-size:10px;padding:2px 6px;border-radius:3px;font-family:'DM Mono',monospace;}
+.staff-hotel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:11px;color:var(--ink3);font-family:'DM Mono',monospace;line-height:1.7;}
+/* 價格表 */
+.price-brand-head{font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--ink);background:var(--bg3);padding:8px 12px;border-radius:4px;margin-bottom:8px;margin-top:16px;border-left:3px solid var(--gold);}
+.price-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px;}
+.price-table th{padding:7px 10px;text-align:left;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink3);border-bottom:1px solid var(--line2);background:var(--bg3);}
+.price-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+.price-table td.p-name{color:var(--ink2);}
+.price-table td.p-orig{color:var(--ink3);text-decoration:line-through;font-size:12px;}
+.price-table td.p-sale{color:var(--orange);font-weight:700;}
+.price-table td.p-note{color:var(--ink3);font-size:11px;}
+.gifts-table{width:100%;border-collapse:collapse;font-size:12px;}
+.gifts-table th{padding:7px 10px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink3);border-bottom:1px solid var(--line2);background:var(--bg3);text-align:left;}
+.gifts-table td{padding:7px 10px;border-bottom:1px solid var(--line);}
+/* 備忘 */
+.rule-item{display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:flex-start;}
+.rule-icon{width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Mono',monospace;}
+.rule-icon.red{background:#c0392b;}
+.rule-text{font-size:13px;color:var(--ink2);line-height:1.6;}
+
+@media(max-width:600px){
+  .header{padding:14px 16px 0;}
+  .main-tabs{margin:0 -16px;}
+  .day-section-head{padding:14px 16px 10px;top:80px;}
+  .table-scroll{padding:0 16px 12px;}
+  .personal-wrap,.info-page{padding-left:16px;padding-right:16px;}
+  .person-selector{padding:12px 16px;margin:0 -16px;top:80px;}
+  .slot-row{grid-template-columns:85px 1fr;}
+  .header-meta{display:none;}
+  .sched-item{grid-template-columns:110px 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="logo-tag">第三屆 · 2026</div>
+      <div class="logo-title">G<span>DAY</span> 內勤手冊</div>
+      <div class="logo-sub">台中韓流寵美日 · 李方艾美酒店 22F 絢麗廳</div>
+    </div>
+    <div class="header-meta">
+      <div><strong>DAY 1</strong> &nbsp;05/05 (二)　09:00 進場</div>
+      <div><strong>DAY 2</strong> &nbsp;05/06 (三)　11:00 進場</div>
+      <div style="margin-top:2px;color:#b0a080;">服裝：白上衣 + 深鐵灰褲（兩日統一）</div>
+    </div>
+  </div>
+  <nav class="main-tabs">
+    <button class="main-tab active" onclick="switchMain('summary')">🏠 總覽</button>
+    <button class="main-tab" onclick="switchMain('schedule')">📅 行程概觀</button>
+    <button class="main-tab" onclick="switchMain('venue')">🗺️ 場地</button>
+    <button class="main-tab" onclick="switchMain('staff')">👥 人員分工</button>
+    <button class="main-tab" onclick="switchMain('price')">💰 價格</button>
+    <button class="main-tab" onclick="switchMain('radio')">📻 對講機名單</button>
+    <button class="main-tab" onclick="switchMain('overview')">📋 整體分工總覽</button>
+    <button class="main-tab" onclick="switchMain('personal')">🎯 個人任務查詢</button>
+  </nav>
+</div>
+
+<!-- ══ PAGE: 總覽 ══ -->
+<div class="page active" id="page-summary">
+<div class="info-page">
+  <div class="overview-cards">
+    <div class="ov-card"><div class="ov-card-label">活動名稱</div><div class="ov-card-val">第三屆 GDAY</div><div class="ov-card-sub">台中韓流寵美日</div></div>
+    <div class="ov-card"><div class="ov-card-label">日期</div><div class="ov-card-val">2026.05.05 – 05.06</div><div class="ov-card-sub">二 · 三　共 2 天</div></div>
+    <div class="ov-card"><div class="ov-card-label">地點</div><div class="ov-card-val">李方艾美酒店</div><div class="ov-card-sub">22F 絢麗廳 · 臺中市中區建國路 111 號</div></div>
+    <div class="ov-card"><div class="ov-card-label">預估學員</div><div class="ov-card-val">300 人</div><div class="ov-card-sub">11:30 入場</div></div>
+    <div class="ov-card"><div class="ov-card-label">服裝規定</div><div class="ov-card-val">白上衣 + 深鐵灰褲</div><div class="ov-card-sub">活動兩日全員統一</div></div>
+    <div class="ov-card"><div class="ov-card-label">住宿</div><div class="ov-card-val">53 寶島行館</div><div class="ov-card-sub">臺中市中區中山路 27 號 · 04-22299333<br>早餐加購 200/人</div></div>
+  </div>
+
+  <div class="info-section">
+    <div class="teacher-cards">
+      <div class="tc-card">
+        <div class="tc-name">SUKHEE LEE 李淑姬</div>
+        <div class="tc-topic">馬爾濟斯經典圓臉造型</div>
+        <div class="tc-desc">120 分鐘 · 模特犬：豆豆 / 比比熊<br>翻譯：Alley</div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-name">WOOYOUNG JEON 全禹映（Honeypet）</div>
+        <div class="tc-topic">棉花面紗犬造型</div>
+        <div class="tc-desc">120 分鐘 · 模特犬：一叫好眠<br>翻譯：Alley</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">🎫 票價</div>
+    <div class="ticket-grid">
+      <div class="ticket-item"><div class="ticket-label">個人票</div><div class="ticket-price">$3,700</div></div>
+      <div class="ticket-item"><div class="ticket-label">早鳥票</div><div class="ticket-price">$2,700</div></div>
+      <div class="ticket-item"><div class="ticket-label">團體 3+</div><div class="ticket-price">$2,500</div></div>
+      <div class="ticket-item"><div class="ticket-label">嚴選店家</div><div class="ticket-price">$2,500</div></div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">🎁 抽獎</div>
+    <div style="background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:16px;font-size:13px;color:var(--ink2);">
+      第四屆寵美日入場券 ＋ BALMONI 梳具兌換券 ×2
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">⚠️ 注意事項</div>
+    <div style="background:var(--bg2);border:1px solid var(--line);border-radius:6px;overflow:hidden;">
+      <div class="rule-item"><div class="rule-icon red">!</div><div class="rule-text">「報名付款即視為確認參加」，恕不接受臨時退費 / 折價，活動當天請統一口徑。</div></div>
+      <div class="rule-item"><div class="rule-icon">1</div><div class="rule-text">對講機通話：先說「姓名 → 需求 → 位置」。</div></div>
+      <div class="rule-item"><div class="rule-icon">2</div><div class="rule-text">客戶進場最優先，後處理工作。</div></div>
+      <div class="rule-item"><div class="rule-icon">3</div><div class="rule-text">突發狀況以客為先。</div></div>
+      <div class="rule-item"><div class="rule-icon">4</div><div class="rule-text">全員表情管理：面帶微笑、親切。</div></div>
+      <div class="rule-item"><div class="rule-icon">5</div><div class="rule-text">遺失物 / 貴重物品可協助詢問，但一概不負責。</div></div>
+      <div class="rule-item"><div class="rule-icon">6</div><div class="rule-text">全體業務應提早到場支援，儘速佈置攤位。</div></div>
+      <div class="rule-item"><div class="rule-icon">7</div><div class="rule-text">手推車需貼名字，全公司都要知道放置位置。</div></div>
+      <div class="rule-item"><div class="rule-icon">8</div><div class="rule-text">垃圾處理費：問清楚要怎麼處理。</div></div>
+      <div class="rule-item"><div class="rule-icon">9</div><div class="rule-text">排椅子要在現場確認調整，一定找珍珍確認。</div></div>
+      <div class="rule-item"><div class="rule-icon">10</div><div class="rule-text">出發前貨物清單須在一周前 Jennifer 簽字確認。</div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ PAGE: 行程概觀 ══ -->
+<div class="page" id="page-schedule">
+<div class="info-page">
+  <div class="schedule-day">
+    <div class="sched-day-head"><span class="sched-day-badge">5/4 (一)</span><span class="sched-day-label">前置日</span></div>
+    <div class="sched-item"><div class="sched-time">08:00 – 09:00</div><div><div class="sched-task">北倉上貨</div><div class="sched-who">Kent、阿諾</div></div></div>
+    <div class="sched-item"><div class="sched-time">09:00 – 12:00</div><div><div class="sched-task">貨運 ＋ 內勤南下</div><div class="sched-who">老闆、季、EM、披、Doreen</div></div></div>
+    <div class="sched-item"><div class="sched-time">09:40 – 11:30</div><div><div class="sched-task">接機 韓國老師 LJ735（台中）</div><div class="sched-who">Jennifer、小隻、新新、Gahyung ＋ 老師 2</div></div></div>
+    <div class="sched-item"><div class="sched-time">11:30 – 12:30</div><div><div class="sched-task">參觀場地 @ 李方艾美</div><div class="sched-who">J、隻、新、Gahyung ＋ 老師 2</div></div></div>
+    <div class="sched-item"><div class="sched-time">13:00 – 17:00</div><div><div class="sched-task">裝禮物袋 @ 李方艾美</div><div class="sched-who">季、EM、披、Doreen、Mei</div></div></div>
+    <div class="sched-item"><div class="sched-time">13:30</div><div><div class="sched-task">韓方抵台 CZ3097（自行前往酒店）</div><div class="sched-who">Changwoo ＋ 韓方 2</div></div></div>
+    <div class="sched-item"><div class="sched-time">15:00 – 18:00</div><div><div class="sched-task">確認課程內容 @ 毛五木</div><div class="sched-who">MJ、隻、新、Mei、Kevin、Alley、Tony、老師 2</div></div></div>
+    <div class="sched-item"><div class="sched-time">18:00 – 20:00</div><div><div class="sched-task">晚餐 @ 毛五木</div><div class="sched-who">MJ、隻、新、Mei、Kevin、Tony、韓方 4 ＋ 老師 2</div></div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="sched-day-head"><span class="sched-day-badge">5/5 (二)</span><span class="sched-day-label">活動 DAY 1</span></div>
+    <div class="sched-item"><div class="sched-time">06:00 – 09:00</div><div><div class="sched-task">南下集合</div><div class="sched-who">Kent、Kalen、阿諾、秀樺、廷廷、奕霖</div></div></div>
+    <div class="sched-item"><div class="sched-time">08:00 – 11:15</div><div><div class="sched-task">洗模特犬 @ DNS（家長直送到店）</div><div class="sched-who">新新、彤彤、老師 2（Honeypet 不洗）、韓方 4</div></div></div>
+    <div class="sched-item"><div class="sched-time">09:00 – 11:15</div><div><div class="sched-task">工作人員進場</div><div class="sched-who">全員</div></div></div>
+    <div class="sched-item"><div class="sched-time">11:15 – 11:30</div><div><div class="sched-task">模特犬 ＋ 老師前往會場</div><div class="sched-who">新新、彤彤、老師 2、韓方 4</div></div></div>
+    <div class="sched-item"><div class="sched-time">11:30</div><div><div class="sched-task">🚪 學員入場</div></div></div>
+    <div class="sched-item"><div class="sched-time">12:20 – 14:20</div><div><div class="sched-task">📚 Sukhee Lee · 馬爾經典圓臉（120 分）</div></div></div>
+    <div class="sched-item"><div class="sched-time">14:20 – 14:30</div><div><div class="sched-task">QA</div></div></div>
+    <div class="sched-item"><div class="sched-time">14:30 – 15:00</div><div><div class="sched-task">休息 ＋ 賣貨</div></div></div>
+    <div class="sched-item"><div class="sched-time">15:00 – 17:00</div><div><div class="sched-task">📚 Honeypet · 棉花面紗犬（120 分）</div></div></div>
+    <div class="sched-item"><div class="sched-time">17:00 – 17:10</div><div><div class="sched-task">QA</div></div></div>
+    <div class="sched-item"><div class="sched-time">17:10 – 18:00</div><div><div class="sched-task">離場</div></div></div>
+    <div class="sched-item"><div class="sched-time">18:00 –</div><div><div class="sched-task">公司聚餐</div></div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="sched-day-head"><span class="sched-day-badge">5/6 (三)</span><span class="sched-day-label">活動 DAY 2</span></div>
+    <div class="sched-item"><div class="sched-time">08:00 – 11:15</div><div><div class="sched-task">洗模特犬 @ DNS</div><div class="sched-who">新新、彤彤、Alley、老師 2、韓方 4</div></div></div>
+    <div class="sched-item"><div class="sched-time">11:00 – 11:30</div><div><div class="sched-task">工作人員進場</div><div class="sched-who">全員</div></div></div>
+    <div class="sched-item"><div class="sched-time">11:30</div><div><div class="sched-task">🚪 學員入場</div></div></div>
+    <div class="sched-item"><div class="sched-time">12:20 – 14:20</div><div><div class="sched-task">📚 Sukhee Lee · 馬爾經典圓臉（120 分）</div></div></div>
+    <div class="sched-item"><div class="sched-time">14:20 – 14:30</div><div><div class="sched-task">QA</div></div></div>
+    <div class="sched-item"><div class="sched-time">14:30 – 15:00</div><div><div class="sched-task">休息 ＋ 賣貨</div></div></div>
+    <div class="sched-item"><div class="sched-time">15:00 – 17:00</div><div><div class="sched-task">📚 Honeypet · 棉花面紗犬（120 分）</div></div></div>
+    <div class="sched-item"><div class="sched-time">17:00 – 17:10</div><div><div class="sched-task">QA</div></div></div>
+    <div class="sched-item"><div class="sched-time">17:10 – 18:00</div><div><div class="sched-task">撤場</div></div></div>
+    <div class="sched-item"><div class="sched-time">18:30 – 21:00</div><div><div class="sched-task">晚餐（23 位）</div><div class="sched-who">MJ、隻、新、Mei、Kalen、秀樺、彤彤、廷廷、奕霖、Kevin、Alley、Tony、韓方 4、老師 2、薇達 2、亞蓓 2</div></div></div>
+  </div>
+
+  <div class="schedule-day">
+    <div class="sched-day-head"><span class="sched-day-badge">5/7 (四)</span><span class="sched-day-label">退房日</span></div>
+    <div class="sched-item"><div class="sched-time">– 12:00</div><div><div class="sched-task">退房</div><div class="sched-who">全體</div></div></div>
+    <div class="sched-item"><div class="sched-time">12:00 – 17:30</div><div><div class="sched-task">北上 / 南下；韓方自由時間</div></div></div>
+    <div class="sched-item"><div class="sched-time">17:30</div><div><div class="sched-task">✈️ 離台 台中→首爾 LJ738</div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE: 場地 ══ -->
+<div class="page" id="page-venue">
+<div class="info-page">
+  <div class="info-section">
+    <div class="info-section-title">🏨 場地資訊</div>
+    <div class="overview-cards">
+      <div class="ov-card"><div class="ov-card-label">場地名稱</div><div class="ov-card-val">李方艾美酒店</div><div class="ov-card-sub">22F 絢麗廳</div></div>
+      <div class="ov-card"><div class="ov-card-label">地址</div><div class="ov-card-val" style="font-size:13px;">臺中市中區建國路 111 號</div></div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">🗺️ 場地平面圖</div>
+    <div class="venue-map">
+<pre>
+  ┌─────────────────────────────────────────────────────┐
+  │  走  廊                                              │
+  ├──────────────────────┬──────────────────────────────┤
+  │                      │  口口迷  │  貝克  │  神寶    │
+  │   舞 台  STAGE       ├──────────────────────────────┤
+  │                      │  Renadog (Mei · Kalen)       │
+  │                      ├──────────────────────────────┤
+  │   控  台             │  QIX (廷廷 · 奕霖)           │
+  ├──────────────────────┤  頂尖                        │
+  │  典範 (秀·兼)        ├──────────────────────────────┤
+  │  電剪 (隻·秀)        │  結帳區 (Doreen · 阿諾)      │
+  │  剪刀 (新·彤)        │                              │
+  ├──────────────────────┴──────────────────────────────┤
+  │                   座  位  區                         │
+  ├─────────────────────────────────────────────────────┤
+  │  入口        報到處        女廁   男廁               │
+  └─────────────────────────────────────────────────────┘
+</pre>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">🏪 攤位一覽</div>
+    <div class="booth-grid">
+      <div class="booth-card"><div class="booth-name">口口迷</div><div class="booth-meta">零食 · 試吃包</div></div>
+      <div class="booth-card"><div class="booth-name">貝克</div><div class="booth-meta">合作品牌</div></div>
+      <div class="booth-card"><div class="booth-name">神寶</div><div class="booth-meta">設備 · 浴缸 / 大吹 / 美容椅</div></div>
+      <div class="booth-card"><div class="booth-name">頂尖</div><div class="booth-meta">設備 / 美容用品</div></div>
+      <div class="booth-card"><div class="booth-name">QIX（AFPET）</div><div class="booth-meta">AFPET ＋ QIX</div><div class="booth-who">廷廷 · 奕霖</div></div>
+      <div class="booth-card"><div class="booth-name">Renadog</div><div class="booth-meta">RENADOG</div><div class="booth-who">Mei · Kalen</div></div>
+      <div class="booth-card"><div class="booth-name">結帳區</div><div class="booth-meta">收銀 · 取貨</div><div class="booth-who">Doreen · 阿諾</div></div>
+      <div class="booth-card"><div class="booth-name">Balmoni 剪刀</div><div class="booth-meta">剪刀系列</div><div class="booth-who">彤彤 · 新新</div></div>
+      <div class="booth-card"><div class="booth-name">Balmoni 電剪</div><div class="booth-meta">梳具 / 多巴胺電剪</div><div class="booth-who">小隻 · 秀樺</div></div>
+      <div class="booth-card"><div class="booth-name">典範</div><div class="booth-meta">支援展示</div><div class="booth-who">秀樺（兼）</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE: 人員分工 ══ -->
+<div class="page" id="page-staff">
+<div class="info-page">
+  <div class="info-section">
+    <div class="info-section-title">👥 人員分工一覽</div>
+    <div class="staff-grid" id="staff-grid"></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE: 價格 ══ -->
+<div class="page" id="page-price">
+<div class="info-page">
+
+  <div class="info-section">
+    <div class="info-section-title">🏷️ 鏵爾優惠價格</div>
+    <div id="price-huaer-tables"></div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">🏷️ 廠商優惠</div>
+    <table class="price-table">
+      <thead><tr><th>品牌</th><th>品名</th><th>原價</th><th>優惠價</th></tr></thead>
+      <tbody>
+        <tr><td>同伴小嶼</td><td class="p-name">老年銀養力</td><td class="p-orig">—</td><td class="p-sale">550</td></tr>
+        <tr><td>同伴小嶼</td><td class="p-name">內服外用淚腺保養組｜好腦睛粉＋毛髮污漬清潔液</td><td class="p-orig">1,849</td><td class="p-sale">950</td></tr>
+        <tr><td>同伴小嶼</td><td class="p-name">connexion 波頓鈣磷粉</td><td class="p-orig">385</td><td class="p-sale">200</td></tr>
+        <tr><td>同伴小嶼</td><td class="p-name">connexion 耳道除臭乾燥粉</td><td class="p-orig">450</td><td class="p-sale">250</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">🎁 學員禮贈袋 ＆ 攤位贈品</div>
+    <table class="gifts-table">
+      <thead><tr><th>品牌</th><th>品名</th><th>規格</th><th>數量</th><th>方式</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td>法國皇家</td><td>比熊犬乾糧試吃包</td><td>500g</td><td>400</td><td>學員禮贈袋</td><td>一人 1 包</td></tr>
+        <tr><td>法國皇家</td><td>小型幼犬專用乾糧</td><td>50g</td><td>1200</td><td>學員禮贈袋</td><td>一人 3 包</td></tr>
+        <tr><td>afpet</td><td>afpet 保定繩</td><td>—</td><td>400</td><td>學員禮贈袋</td><td>一人 1 條</td></tr>
+        <tr><td>Renadog</td><td>4洗1護試用包</td><td>15ml</td><td>400</td><td>學員禮贈袋</td><td>一人 1 組</td></tr>
+        <tr><td>頂尖</td><td>洗劑試用包｜紅粉佳人＋三重魔法</td><td>50ml</td><td>400</td><td>學員禮贈袋</td><td>一人 1 包</td></tr>
+        <tr><td>同伴小嶼</td><td>connexion 波頓鈣磷粉試吃包</td><td>4g</td><td>—</td><td>攤位加 LINE 兌換</td><td>一人 3 包</td></tr>
+        <tr><td>同伴小嶼</td><td>好腦睛粉試吃包</td><td>3g</td><td>—</td><td>攤位加 LINE 兌換</td><td>一人 3 包</td></tr>
+        <tr><td>同伴小嶼</td><td>耳朵清潔液試用罐</td><td>30ml</td><td>—</td><td>攤位加 LINE 兌換</td><td>一人 1 罐</td></tr>
+        <tr><td>口口迷</td><td>零食試吃包（隨機口味）</td><td>5g</td><td>200/天</td><td>憑名片兌換</td><td>送完為止</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ PAGE: 對講機名單 ══ -->
+<div class="page" id="page-radio">
+<div class="info-page">
+
+  <div class="info-section">
+    <div class="info-section-title">📻 對講機使用規則</div>
+    <div style="background:var(--bg2);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:24px;">
+      <div class="rule-item">
+        <div class="rule-icon red">!</div>
+        <div class="rule-text">通話格式：先說「<strong>姓名 → 需求 → 位置</strong>」，例如：「Kent 呼叫季穎，需要便當，在控台」</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">📍</div>
+        <div class="rule-text"><strong>領取 / 歸還地點：</strong>控台</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">⏰</div>
+        <div class="rule-text">
+          <strong>領取時間：</strong>5/5（二）09:00　／　5/6（三）09:00
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">⏰</div>
+        <div class="rule-text">
+          <strong>歸還時間：</strong>5/5（二）18:00　／　5/6（三）18:30 離場前
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-section-title">📋 對講機名單（共 10 台）</div>
+    <div style="background:var(--bg2);border:1px solid var(--line);border-radius:6px;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:60px 1fr 1fr;background:var(--ink);color:#c8bfaa;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;padding:10px 20px;border-bottom:2px solid var(--gold);">
+        <span>#</span><span>姓名</span><span>備註</span>
+      </div>
+      <div id="radio-list"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ PAGE 1: 整體分工 ══ -->
+<div class="page" id="page-overview">
+
+  <div class="day-section-head">
+    <span class="day-badge">05/05 DAY 1</span>
+    <span class="day-head-text">第一天 — 進場 · 開幕 · 課程</span>
+    <span class="day-head-sub">高雄/台中 集合 · 09:00 進場</span>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>時間</th><th>活動流程</th><th>工作內容</th><th>位置</th><th>負責人</th><th>備註</th></tr></thead>
+      <tbody id="ov-0505"></tbody>
+    </table>
+  </div>
+
+  <div class="day-section-head" style="margin-top:24px;">
+    <span class="day-badge">05/06 DAY 2</span>
+    <span class="day-head-text">第二天 — 課程 · 銷售 · 撤場</span>
+    <span class="day-head-sub">11:00 進場 · 17:30 撤場</span>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>時間</th><th>活動流程</th><th>工作內容</th><th>位置</th><th>負責人</th><th>備註</th></tr></thead>
+      <tbody id="ov-0506"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ══ PAGE 2: 個人任務 ══ -->
+<div class="page" id="page-personal">
+<div class="personal-wrap">
+  <div class="person-selector">
+    <div class="selector-label">選擇成員 → 查看個人任務</div>
+    <div class="person-btns" id="person-btns"></div>
+  </div>
+  <div id="personal-display">
+    <div class="placeholder">
+      <div class="placeholder-icon">👆</div>
+      <div class="placeholder-text">點選上方成員名字，查看個人工作安排</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  整體分工資料
+// ════════════════════════════════════════
+const OV05 = [
+  {phase:'▎ 進場準備'},
+  {t:'06:00 – 09:00', f:'北區南下', d:'前往台中李方艾美', p:'各自出發', o:['Kent','Kalen','阿諾','秀樺','廷廷','奕霖'], n:''},
+  {t:'08:00 – 11:15', f:'洗模特犬', d:'洗模特犬（家長直送到店）', p:'DNS 寵物沙龍', o:['新新','彤彤'], n:''},
+  {t:'09:00 – 11:15', f:'工作人員進場', d:'集合、點交、各定位準備', p:'李方艾美 22F', o:['Michael','Jennifer','小隻','Mei','Kevin','Kalen','阿諾','秀樺','廷廷','奕霖','季穎','EM'], n:''},
+  {t:'09:00', f:'廠商點交', d:'進場點交', p:'李方艾美', o:['季穎'], n:''},
+  {t:'09:00', f:'對講機領取', d:'集合領對講機、工作人員牌', p:'控台', o:['Kent','全體'], n:'可分配 10 台'},
+  {t:'09:00 – 11:00', f:'燈光音響架設', d:'燈光音響設備架設', p:'舞台、控台區', o:['艾格'], n:'老闆確認效果'},
+  {t:'09:00 – 09:30', f:'座椅定位', d:'觀眾區座椅定位確認', p:'觀眾區', o:['珍珍'], n:''},
+  {t:'09:00 – 10:00', f:'地毯布置', d:'地毯＋布置物定位', p:'全場', o:['凌飛','EM'], n:''},
+  {t:'09:00 – 10:30', f:'攤位擺設', d:'各攤位擺設 + 報到區備妥', p:'各攤位', o:['廷廷','奕霖','Mei','Kalen','小隻','秀樺','Doreen','阿諾','季穎'], n:''},
+  {t:'09:00 – 10:00', f:'休息室準備', d:'水、點心、垃圾桶、工具', p:'休息室', o:['季穎'], n:''},
+  {t:'09:00 – 10:00', f:'舞台陳列定位', d:'美容桌椅＋工具＋攝影角度', p:'舞台', o:['季穎'], n:'老闆確認定位'},
+  {t:'09:00 – 11:15', f:'場佈側拍', d:'測試調色、記錄場佈過程', p:'全場', o:['EM'], n:''},
+  {t:'10:00 – 10:30', f:'禮物袋定位', d:'禮物袋擺放到每個椅子上', p:'觀眾區', o:['奕霖','Kalen','季穎'], n:''},
+  {t:'10:00 – 10:30', f:'保留席定位', d:'模特犬家長座位（第一排）', p:'第一排座位', o:['Kalen','季穎'], n:''},
+  {t:'10:30 – 11:00', f:'攤位最終確認', d:'與各攤位負責人確認備品及活動內容', p:'各攤位', o:['廷廷','Mei','小隻','秀樺','Doreen','季穎'], n:''},
+  {t:'10:30 – 11:00', f:'限動拍攝', d:'各攤位拍一支限動標記 GDAY', p:'各攤位', o:['廷廷（QIX）','Mei（RENADOG）','小隻（Balmoni）'], n:'攤位設置完成後才執行'},
+  {t:'11:00', f:'放飯', d:'發便當', p:'—', o:['季穎'], n:''},
+  {t:'11:00 – 11:15', f:'模特犬＋老師前往會場', d:'帶老師、模特犬從 DNS 前往會場', p:'DNS → 李方艾美', o:['新新','彤彤'], n:''},
+  {t:'11:00 – 11:15', f:'設備測試', d:'PPT 播放、音響、手麥、攝影機、燈光', p:'舞台區', o:['Michael'], n:''},
+  {t:'11:00 – 11:15', f:'舞台綵排', d:'定點、進退場確認；老師、翻譯、主持人站位；大合照定位', p:'舞台區', o:['小隻','Alley','EM','Kevin'], n:'Kevin 確認老師站位'},
+  {t:'11:15 – 11:30', f:'老師接待', d:'帶老師到休息室，說明動線與環境', p:'休息室', o:['Kevin'], n:''},
+  {t:'11:15 – 11:30', f:'全員 Standby', d:'各自到定位點等待', p:'各定位點', o:['全體'], n:''},
+  {phase:'▎ 學員入場 ＋ 第一堂課'},
+  {t:'11:30 – 12:10', f:'學員入場', d:'學員報到 / 蓋章放行 ＋ 引導拍照', p:'報到區', o:['Kevin','季穎','廷廷','奕霖'], n:'報到人數達 8 成→Kevin 去關心休息室老師'},
+  {t:'11:30 –', f:'攤位銷售', d:'RENADOG 攤位', p:'Renadog', o:['Mei'], n:''},
+  {t:'', f:'', d:'QIX 攤位', p:'QIX', o:['廷廷','奕霖'], n:''},
+  {t:'', f:'', d:'剪刀攤位', p:'Balmoni 剪刀', o:['新新','彤彤'], n:''},
+  {t:'', f:'', d:'Balmoni 電剪攤位', p:'Balmoni 電剪', o:['小隻','秀樺'], n:''},
+  {t:'', f:'', d:'典範攤位（兼）', p:'典範', o:['秀樺（兼）'], n:''},
+  {t:'', f:'', d:'結帳區', p:'結帳區', o:['Doreen','阿諾'], n:''},
+  {t:'11:30 –', f:'老師接待', d:'全程跟著老師', p:'全場', o:['Alley'], n:'有問題找 Kent'},
+  {t:'11:30 –', f:'學員招呼', d:'全場學員招呼、引導', p:'全場', o:['珍珍'], n:''},
+  {t:'11:30 –', f:'拍攝', d:'拍攝報到區、攤位區、觀眾區', p:'全場', o:['EM'], n:''},
+  {t:'12:00 – 12:10', f:'場邊提醒', d:'提醒活動即將開始，請學員入座', p:'舞台旁', o:['小隻'], n:''},
+  {t:'12:10 – 12:20', f:'開場', d:'開場 / 活動介紹 / 感謝贊助商 / 講師介紹 / 請老師上台', p:'舞台', o:['小隻'], n:'場邊協助：Kevin'},
+  {t:'12:20 – 14:20', f:'第一堂課', d:'Sukhee Lee — 馬爾經典圓臉造型（120 分鐘）', p:'舞台', o:['Sukhee 老師','Alley（翻譯）','模特犬'], n:'場邊協助：Kevin；EM 拍 BA 照'},
+  {t:'14:20 – 14:30', f:'QA', d:'學員問題解答', p:'舞台、觀眾區', o:['小隻（主持）','Kalen','Mei（遞麥）'], n:''},
+  {t:'14:20 – 14:30', f:'走廊確認', d:'確認垃圾桶是否需清理', p:'走廊', o:['季穎'], n:''},
+  {phase:'▎ 休息時間'},
+  {t:'14:30 – 14:40', f:'全體大合照', d:'2 位老師 ＋ 全體學員大合照（不帶狗）', p:'舞台＋觀眾區', o:['小隻（主持）','EM（拍攝）'], n:'拍完才開始賣貨'},
+  {t:'14:40 – 15:00', f:'攤位銷售', d:'休息時段銷售', p:'各攤位', o:['廷廷','奕霖','Mei','Kalen','新新','彤彤','小隻','秀樺','Doreen','阿諾','季穎'], n:''},
+  {t:'14:40 – 15:00', f:'下半場準備', d:'舞台環境整理、確認老師工具', p:'舞台', o:['Kevin'], n:''},
+  {t:'14:55 – 15:00', f:'場邊提醒', d:'提醒休息時間結束，請學員入座', p:'結帳區旁', o:['季穎'], n:''},
+  {phase:'▎ 第二堂課 ＋ 學員離場'},
+  {t:'15:00 – 15:10', f:'開場', d:'下半場開場 ＋ 請老師翻譯上台', p:'舞台', o:['小隻'], n:'場邊協助：Kevin'},
+  {t:'15:10 – 17:10', f:'第二堂課', d:'Honeypet — 棉花面紗犬造型（120 分鐘）', p:'舞台', o:['Honeypet 老師','Alley（翻譯）','模特犬'], n:'場邊協助：Kevin；EM 拍 BA 照'},
+  {t:'15:10 – 17:10', f:'移動禮物袋', d:'把明日（5/6）禮物袋移到結帳區', p:'結帳區', o:['季穎','Doreen','Mei','秀樺','Kalen'], n:''},
+  {t:'17:10 – 17:20', f:'QA', d:'學員問題解答', p:'舞台、觀眾區', o:['小隻（主持）','Kalen','Mei（遞麥）'], n:'場邊協助：Kevin'},
+  {t:'17:20 – 17:25', f:'老師 Say Bye ＋ 合照', d:'2 位老師 ＋ 模特犬大合照', p:'舞台＋觀眾區', o:['小隻','EM'], n:'場邊協助：Kevin'},
+  {t:'17:25', f:'結尾主持', d:'感謝參與、提醒離場時間、手寫板歸還提醒', p:'舞台', o:['小隻'], n:'講完可下台繼續賣貨'},
+  {phase:'▎ 尾場銷售 ＋ 學員離場'},
+  {t:'17:25 – 17:50', f:'攤位銷售', d:'尾場銷售時段', p:'各攤位', o:['廷廷','奕霖','Mei','Kalen','新新','彤彤','小隻','秀樺','Doreen','阿諾','季穎'], n:''},
+  {t:'17:25 – 17:50', f:'學員合照', d:'引導學員上台和老師合照（一次 5-6 位；只能拍照、不能問問題）', p:'舞台', o:['Kevin（引導）','EM（拍攝）'], n:''},
+  {t:'17:50', f:'離場提醒', d:'提醒學員離場時間', p:'場邊', o:['季穎'], n:''},
+  {t:'', f:'手寫板回收', d:'出口收回手寫板', p:'出口', o:['奕霖'], n:''},
+  {phase:'▎ 收場'},
+  {t:'17:50 – 18:00', f:'環境整理', d:'舞台、垃圾桶清理', p:'舞台、走廊', o:['季穎'], n:''},
+  {t:'17:50 – 18:00', f:'休息室整理', d:'休息室環境整理', p:'休息室', o:['Kevin'], n:''},
+  {t:'', f:'各攤位整理', d:'垃圾收拾、個人及重要物品帶走', p:'各攤位', o:['全員'], n:''},
+  {t:'18:00', f:'集合散場', d:'對講機回收給艾格', p:'控台', o:['全員'], n:''},
+];
+
+const OV06 = [
+  {phase:'▎ 進場準備'},
+  {t:'08:00 – 11:15', f:'洗模特犬', d:'洗模特犬（家長直送到店）', p:'DNS 寵物沙龍', o:['新新','彤彤'], n:''},
+  {t:'11:00 – 11:15', f:'模特犬＋老師前往會場', d:'帶老師、模特犬從 DNS 前往會場', p:'DNS → 李方艾美', o:['新新','彤彤'], n:''},
+  {t:'11:00', f:'對講機領取', d:'集合領對講機、工作人員牌', p:'控台', o:['Kent','全體'], n:''},
+  {t:'11:00 – 11:15', f:'攤位準備', d:'各攤位準備就緒', p:'各攤位', o:['Mei','小隻','秀樺','Doreen'], n:''},
+  {t:'11:00 – 11:15', f:'舞台＋休息室準備', d:'舞台工具確認 ＋ 休息室準備（水、點心、垃圾桶）', p:'舞台＋休息室', o:['季穎'], n:''},
+  {t:'11:00 – 11:15', f:'禮物袋定位', d:'禮物袋擺放到每個椅子上', p:'觀眾區', o:['廷廷','奕霖','Kalen','阿諾'], n:''},
+  {t:'11:00 – 11:15', f:'設備測試', d:'PPT 播放、音響、手麥、攝影機、燈光', p:'舞台區', o:['Michael'], n:''},
+  {t:'11:00 – 11:30', f:'攝影師交接', d:'平面攝影師報到交接（兩位）', p:'全場', o:['EM'], n:''},
+  {t:'11:15 – 11:20', f:'放飯', d:'發便當', p:'—', o:['季穎'], n:''},
+  {t:'11:15 – 11:30', f:'老師接待', d:'老師休息室準備', p:'休息室', o:['Kevin'], n:''},
+  {t:'11:15 – 11:30', f:'全員 Standby', d:'各自到定位點等待', p:'各定位點', o:['全體'], n:''},
+  {phase:'▎ 學員入場 ＋ 第一堂課'},
+  {t:'11:30 – 12:10', f:'學員入場', d:'學員報到 / 蓋章放行 ＋ 引導拍照', p:'報到區', o:['Kevin','季穎','廷廷','奕霖'], n:'報到人數達 8 成→Kevin 去關心休息室老師'},
+  {t:'11:30 –', f:'攤位銷售', d:'RENADOG 攤位', p:'Renadog', o:['Mei'], n:''},
+  {t:'', f:'', d:'QIX 攤位', p:'QIX', o:['廷廷','奕霖'], n:''},
+  {t:'', f:'', d:'剪刀攤位', p:'Balmoni 剪刀', o:['新新','彤彤'], n:''},
+  {t:'', f:'', d:'Balmoni 電剪攤位', p:'Balmoni 電剪', o:['小隻','秀樺'], n:''},
+  {t:'', f:'', d:'典範攤位（兼）', p:'典範', o:['秀樺（兼）'], n:''},
+  {t:'', f:'', d:'結帳區', p:'結帳區', o:['Doreen','阿諾'], n:''},
+  {t:'11:30 –', f:'老師接待', d:'全程跟著老師', p:'全場', o:['Alley'], n:'有問題找 Kent'},
+  {t:'11:30 –', f:'學員招呼', d:'全場學員招呼、引導', p:'全場', o:['珍珍'], n:''},
+  {t:'11:30 –', f:'拍攝', d:'拍攝報到區、攤位區、觀眾區（兩位攝影師分工）', p:'全場', o:['EM','許兄'], n:''},
+  {t:'12:00 – 12:10', f:'場邊提醒', d:'提醒活動即將開始，請學員入座', p:'舞台旁', o:['小隻'], n:''},
+  {t:'12:10 – 12:20', f:'開場', d:'開場 / 活動介紹 / 感謝贊助商 / 講師介紹 / 請老師上台', p:'舞台', o:['小隻'], n:'場邊協助：Kevin'},
+  {t:'12:20 – 14:20', f:'第一堂課', d:'Sukhee Lee — 馬爾經典圓臉造型（120 分鐘）', p:'舞台', o:['Sukhee 老師','Alley（翻譯）','模特犬'], n:'場邊協助：Kevin；EM 拍 BA 照'},
+  {t:'14:20 – 14:30', f:'QA', d:'學員問題解答', p:'舞台、觀眾區', o:['小隻（主持）','Kalen','Mei（遞麥）'], n:''},
+  {t:'14:20 – 14:30', f:'走廊確認', d:'確認垃圾桶空間', p:'走廊', o:['Kent'], n:''},
+  {phase:'▎ 休息時間'},
+  {t:'14:30 – 14:40', f:'全體大合照', d:'2 位老師 ＋ 全體學員大合照（不帶狗）', p:'舞台＋觀眾區', o:['小隻（主持）','EM（拍攝）'], n:'拍完才開始賣貨'},
+  {t:'14:40 – 15:00', f:'攤位銷售', d:'休息時段銷售', p:'各攤位', o:['廷廷','奕霖','Mei','Kalen','新新','彤彤','小隻','秀樺','Doreen','阿諾','季穎'], n:''},
+  {t:'14:40 – 15:00', f:'下半場準備', d:'舞台環境整理、確認老師工具', p:'舞台', o:['Kevin'], n:''},
+  {t:'14:55 – 15:00', f:'場邊提醒', d:'提醒休息時間結束，請學員入座', p:'結帳區旁', o:['季穎'], n:''},
+  {phase:'▎ 第二堂課 ＋ 學員離場'},
+  {t:'15:00 – 15:10', f:'開場', d:'下半場開場 ＋ 請老師翻譯上台', p:'舞台', o:['小隻'], n:'場邊協助：Kevin'},
+  {t:'15:10 – 17:10', f:'第二堂課', d:'Honeypet — 棉花面紗犬造型（120 分鐘）', p:'舞台', o:['Honeypet 老師','Alley（翻譯）','模特犬'], n:'場邊協助：Kevin；EM 拍 BA 照'},
+  {t:'17:10 – 17:20', f:'QA', d:'學員問題解答', p:'舞台、觀眾區', o:['小隻（主持）','Kalen','Mei（遞麥）'], n:'場邊協助：Kevin'},
+  {t:'17:20 – 17:25', f:'老師 Say Bye ＋ 合照', d:'2 位老師 ＋ 模特犬大合照', p:'舞台、觀眾區', o:['小隻','EM'], n:'場邊協助：Kevin'},
+  {t:'17:25', f:'結尾主持', d:'感謝參與、提醒離場時間、手寫板歸還提醒', p:'舞台', o:['小隻'], n:'講完可下台繼續賣貨'},
+  {phase:'▎ 尾場銷售 ＋ 撤場'},
+  {t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'各攤位開始部分整理', p:'各攤位', o:['廷廷','奕霖','Mei','Kalen','新新','彤彤','秀樺','Doreen','阿諾'], n:''},
+  {t:'17:00 – 18:00', f:'布置物撤場', d:'走廊、攤位、舞台布置物撤場', p:'全場', o:['凌飛'], n:''},
+  {t:'17:25 – 17:50', f:'學員合照', d:'引導學員上台和老師合照（一次 5-6 位；只能拍照）', p:'舞台', o:['Kevin（引導）','EM（拍攝）'], n:''},
+  {t:'17:25 – 17:50', f:'銷售時段', d:'尾場銷售', p:'各攤位', o:['Mei','Kalen','新新','彤彤','小隻','秀樺','Doreen','阿諾','季穎'], n:''},
+  {t:'17:30 – 18:00', f:'座位區收拾', d:'確認垃圾、回收手寫板', p:'觀眾區', o:['廷廷'], n:''},
+  {t:'17:50 – 18:00', f:'趕人', d:'學員完全離場', p:'全場', o:['小隻'], n:''},
+  {t:'17:50 – 18:15', f:'打包裝箱', d:'各攤位備品裝箱打包、上棧板', p:'各攤位', o:['全員'], n:'回報 Kent'},
+  {t:'', f:'環境整理', d:'舞台收拾、休息室整理、垃圾分類', p:'舞台、休息室', o:['季穎'], n:''},
+  {t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐（23 位）', p:'待確認', o:['Michael','Jennifer','小隻','Mei','Kalen','秀樺','新新','奕霖','Kevin','Alley','廷廷'], n:'計程車（預計）'},
+  {t:'18:15 – 18:30', f:'等回頭車', d:'回頭車拉貨', p:'待確認', o:['Kent'], n:''},
+  {t:'', f:'撤場點交', d:'撤場完成點交確認', p:'—', o:['Kent','季穎'], n:''},
+];
+
+// ════════════════════════════════════════
+//  個人時段資料（依時序完整列出，含空白時段）
+// ════════════════════════════════════════
+// type: 'task' = 有安排; 'free' = 自由時間
+const PEOPLE = [
+ { key:'michael', name:'Michael', avatar:'M', role:'接待、廠商聯繫、控台螢幕切換', area:'全場',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 11:15', f:'進場準備', d:'進場集合；確認燈光音響設備架設效果；確認舞台陳列定位', p:'李方艾美 22F'},
+      {type:'task', t:'11:00 – 11:15', f:'設備測試', d:'PPT 播放、音響、手麥、攝影機、燈光全部確認', p:'舞台區'},
+      {type:'task', t:'11:15 – 11:30', f:'全員 Standby', d:'到定位點等待', p:'全場'},
+      {type:'task', t:'11:30 – 14:30', f:'接待', d:'接待貴賓、廠商聯繫、控台螢幕切換', p:'全場'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 18:00', f:'接待', d:'接待貴賓、廠商聯繫、控台螢幕切換', p:'全場'},
+      {type:'task', t:'18:00', f:'集合散場', d:'對講機回收，確認撤場', p:'控台'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'設備測試', d:'PPT 播放、音響、手麥、攝影機、燈光確認', p:'舞台區'},
+      {type:'task', t:'11:15 – 11:30', f:'全員 Standby', d:'到定位點等待', p:'全場'},
+      {type:'task', t:'11:30 – 14:30', f:'接待', d:'接待貴賓、廠商聯繫、控台螢幕切換', p:'全場'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'接待', d:'接待貴賓、廠商聯繫、控台螢幕切換', p:'全場'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認', n:'計程車（預計）'},
+    ]},
+   ]},
+ { key:'jennifer', name:'Jennifer', avatar:'J', role:'接待、廠商聯繫', area:'全場',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 11:15', f:'進場準備', d:'進場集合，協助場地點交及廠商接洽', p:'全場'},
+      {type:'task', t:'11:15 – 11:30', f:'全員 Standby', d:'到定位點等待', p:'全場'},
+      {type:'task', t:'11:30 – 14:30', f:'接待', d:'接待貴賓、廠商聯繫', p:'全場'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 18:00', f:'接待', d:'接待貴賓、廠商聯繫', p:'全場'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'全場'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:30', f:'進場準備', d:'進場集合，協助廠商接洽', p:'全場'},
+      {type:'task', t:'11:30 – 14:30', f:'接待', d:'接待貴賓、廠商聯繫', p:'全場'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'接待', d:'接待貴賓、廠商聯繫', p:'全場'},
+      {type:'task', t:'17:50 – 18:15', f:'收場', d:'協助確認撤場', p:'全場'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'kevin', name:'Kevin', avatar:'K', role:'老師接待、學員報到、課程場邊協助', area:'休息室 · 報到區 · 舞台',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 11:00', f:'進場準備', d:'進場集合，協助各區準備', p:'全場'},
+      {type:'task', t:'11:00 – 11:15', f:'舞台綵排', d:'確認老師站位、進退場動線', p:'舞台區'},
+      {type:'task', t:'11:15 – 11:30', f:'老師接待', d:'帶老師到休息室，說明動線與環境配置', p:'休息室'},
+      {type:'task', t:'11:30 – 12:10', f:'學員入場', d:'報到區引導（人數達 8 成後→前往休息室關心老師）', p:'報到區'},
+      {type:'task', t:'12:10 – 12:20', f:'開場場邊協助', d:'提醒老師準備上台，站於舞台場邊待命', p:'舞台場邊'},
+      {type:'task', t:'12:20 – 14:20', f:'第一堂課場邊', d:'Sukhee 課程全程場邊協助，處理臨時狀況', p:'舞台場邊'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 場邊待命', d:'場邊協助', p:'舞台場邊'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'下半場舞台準備', d:'舞台環境整理、確認老師下半場工具', p:'舞台'},
+      {type:'task', t:'15:00 – 15:10', f:'開場場邊協助', d:'下半場開場場邊協助', p:'舞台場邊'},
+      {type:'task', t:'15:10 – 17:10', f:'第二堂課場邊', d:'Honeypet 課程全程場邊協助，處理臨時狀況', p:'舞台場邊'},
+      {type:'task', t:'17:10 – 17:20', f:'QA 場邊待命', d:'場邊協助', p:'舞台場邊'},
+      {type:'task', t:'17:20 – 17:25', f:'老師合照場邊', d:'老師 Say Bye 及合照場邊協助', p:'舞台場邊'},
+      {type:'task', t:'17:25 – 17:50', f:'學員合照引導', d:'引導學員上台和老師合照，一次 5-6 位，提醒只能拍照不能問問題', p:'舞台'},
+      {type:'task', t:'17:50 – 18:00', f:'休息室整理', d:'休息室環境整理', p:'休息室'},
+      {type:'task', t:'18:00', f:'集合散場', d:'對講機回收確認', p:'控台'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'free', t:'11:00 – 11:15', f:'自由時間', d:''},
+      {type:'task', t:'11:15 – 11:30', f:'老師接待', d:'老師休息室準備，確認老師需求', p:'休息室'},
+      {type:'task', t:'11:30 – 12:10', f:'學員入場', d:'報到區引導（人數達 8 成後→前往休息室關心老師）', p:'報到區'},
+      {type:'task', t:'12:10 – 12:20', f:'開場場邊協助', d:'場邊待命協助', p:'舞台場邊'},
+      {type:'task', t:'12:20 – 14:20', f:'第一堂課場邊', d:'Sukhee 課程全程場邊協助', p:'舞台場邊'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 場邊待命', d:'場邊協助', p:'舞台場邊'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'下半場舞台準備', d:'舞台環境整理、確認老師下半場工具', p:'舞台'},
+      {type:'task', t:'15:00 – 15:10', f:'開場場邊協助', d:'下半場開場場邊協助', p:'舞台場邊'},
+      {type:'task', t:'15:10 – 17:10', f:'第二堂課場邊', d:'Honeypet 課程全程場邊協助', p:'舞台場邊'},
+      {type:'task', t:'17:10 – 17:20', f:'QA 場邊待命', d:'場邊協助', p:'舞台場邊'},
+      {type:'task', t:'17:20 – 17:25', f:'老師合照場邊', d:'場邊協助', p:'舞台場邊'},
+      {type:'task', t:'17:25 – 17:50', f:'學員合照引導', d:'引導學員上台和老師合照，一次 5-6 位，只能拍照不能問問題', p:'舞台'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認', n:'計程車（預計）'},
+    ]},
+   ]},
+ { key:'xiao-zhi', name:'小隻', avatar:'隻', role:'主持人 · Balmoni 電剪銷售', area:'舞台 · Balmoni 電剪',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設', d:'Balmoni 電剪攤位擺設，備品確認', p:'Balmoni 電剪'},
+      {type:'task', t:'10:30 – 11:00', f:'限動拍攝 ＋ 攤位最終確認', d:'Balmoni ＋ ICONIC 限動拍攝；與季穎確認備品', p:'Balmoni 電剪'},
+      {type:'task', t:'11:00 – 11:15', f:'舞台綵排', d:'主持人定點、進退場確認', p:'舞台區'},
+      {type:'free', t:'11:15 – 12:00', f:'自由時間', d:''},
+      {type:'task', t:'12:00 – 12:10', f:'場邊提醒', d:'提醒活動即將開始，請學員入座', p:'舞台旁'},
+      {type:'task', t:'12:10 – 12:20', f:'開場主持', d:'開場 / 活動介紹 / 感謝贊助商 / 講師介紹 / 請老師上台', p:'舞台'},
+      {type:'task', t:'12:20 – 14:20', f:'第一堂課主持', d:'Sukhee 課程主持（適時 cue EM 拍 BA 照）', p:'舞台'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 主持', d:'學員問題解答，協助遞麥', p:'舞台、觀眾區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照主持', d:'主持全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'攤位銷售', d:'銷售 BALMONI 電剪', p:'Balmoni 電剪'},
+      {type:'task', t:'15:00 – 15:10', f:'下半場開場', d:'下半場開場，請老師翻譯上台', p:'舞台'},
+      {type:'task', t:'15:10 – 17:10', f:'第二堂課主持', d:'Honeypet 課程主持（適時 cue EM 拍 BA 照）', p:'舞台'},
+      {type:'task', t:'17:10 – 17:20', f:'QA 主持', d:'學員問題解答，協助遞麥', p:'舞台、觀眾區'},
+      {type:'task', t:'17:20 – 17:25', f:'老師合照主持', d:'主持老師＋模特犬大合照', p:'舞台＋觀眾區'},
+      {type:'task', t:'17:25', f:'結尾主持', d:'感謝參與、離場時間提醒、手寫板歸還提醒（講完可下台賣貨）', p:'舞台'},
+      {type:'task', t:'17:25 – 17:50', f:'攤位銷售', d:'尾場銷售 BALMONI 電剪', p:'Balmoni 電剪'},
+      {type:'task', t:'18:00', f:'集合散場', d:'對講機回收確認', p:'控台'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'攤位準備', d:'Balmoni 電剪攤位準備就緒', p:'Balmoni 電剪'},
+      {type:'free', t:'11:15 – 12:00', f:'自由時間', d:''},
+      {type:'task', t:'12:00 – 12:10', f:'場邊提醒', d:'提醒活動即將開始，請學員入座', p:'舞台旁'},
+      {type:'task', t:'12:10 – 12:20', f:'開場主持', d:'開場、活動介紹、感謝贊助商、講師介紹', p:'舞台'},
+      {type:'task', t:'12:20 – 14:20', f:'第一堂課主持', d:'Sukhee 課程主持', p:'舞台'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 主持', d:'學員問題解答，協助遞麥', p:'舞台、觀眾區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照主持', d:'主持全體大合照', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'攤位銷售', d:'銷售 BALMONI 電剪', p:'Balmoni 電剪'},
+      {type:'task', t:'15:00 – 15:10', f:'下半場開場', d:'下半場開場，請老師翻譯上台', p:'舞台'},
+      {type:'task', t:'15:10 – 17:10', f:'第二堂課主持', d:'Honeypet 課程主持', p:'舞台'},
+      {type:'task', t:'17:10 – 17:20', f:'QA 主持', d:'學員問題解答，協助遞麥', p:'舞台、觀眾區'},
+      {type:'task', t:'17:20 – 17:25', f:'老師合照主持', d:'主持老師＋模特犬大合照', p:'舞台、觀眾區'},
+      {type:'task', t:'17:25', f:'結尾主持', d:'感謝參與、離場時間提醒（講完可下台賣貨）', p:'舞台'},
+      {type:'task', t:'17:25 – 17:50', f:'攤位銷售', d:'尾場銷售 BALMONI 電剪', p:'Balmoni 電剪'},
+      {type:'task', t:'17:50 – 18:00', f:'趕人', d:'確認學員完全離場', p:'全場'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'Balmoni 攤位備品裝箱打包', p:'Balmoni 電剪'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'em', name:'EM', avatar:'EM', role:'攝影紀錄（Reels 70% / 照片 30%）', area:'全場',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 11:15', f:'場佈拍攝', d:'測試調色；記錄場佈過程；確認地毯、布置物效果（全場）', p:'全場'},
+      {type:'task', t:'11:00 – 11:15', f:'舞台綵排拍攝', d:'配合舞台綵排拍攝定點畫面', p:'舞台區'},
+      {type:'task', t:'11:30 – 12:10', f:'入場拍攝', d:'報到區、攤位區、觀眾區入場過程拍攝', p:'全場'},
+      {type:'task', t:'12:20 – 14:20', f:'第一堂課拍攝', d:'Sukhee 課程全程拍攝，包含 BA 照（等主持人 cue）', p:'舞台'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照拍攝', d:'全體大合照攝影', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'攤位拍攝', d:'各攤位銷售過程拍攝', p:'各攤位'},
+      {type:'task', t:'15:10 – 17:10', f:'第二堂課拍攝', d:'Honeypet 課程全程拍攝，包含 BA 照（等主持人 cue）', p:'舞台'},
+      {type:'task', t:'17:20 – 17:25', f:'老師合照拍攝', d:'老師＋模特犬合照攝影', p:'舞台＋觀眾區'},
+      {type:'task', t:'17:25 – 17:50', f:'學員合照拍攝', d:'學員上台和老師拍照攝影', p:'舞台'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認今日素材', p:'—'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:30', f:'攝影師交接', d:'與第二位攝影師報到交接，分配拍攝動線', p:'全場'},
+      {type:'task', t:'11:30 – 12:10', f:'入場拍攝', d:'報到區、攤位區、觀眾區入場過程拍攝（兩位分工）', p:'全場'},
+      {type:'task', t:'12:20 – 14:20', f:'第一堂課拍攝', d:'Sukhee 課程全程拍攝，包含 BA 照', p:'舞台'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照拍攝', d:'全體大合照攝影', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'攤位拍攝', d:'各攤位銷售過程拍攝', p:'各攤位'},
+      {type:'task', t:'15:10 – 16:00', f:'第二堂課拍攝', d:'Honeypet 課程拍攝（攝影師約 16:00 離開）', p:'舞台'},
+      {type:'free', t:'16:00 – 17:20', f:'自由時間', d:''},
+      {type:'task', t:'17:20 – 17:25', f:'老師合照拍攝', d:'老師＋模特犬合照攝影', p:'舞台'},
+      {type:'task', t:'17:25 – 17:50', f:'學員合照拍攝', d:'學員上台和老師拍照攝影', p:'舞台'},
+    ]},
+   ]},
+ { key:'mei', name:'Mei', avatar:'M', role:'RENADOG 銷售 · 入場時支援 QIX · QA 遞麥', area:'Renadog 攤位',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設', d:'RENADOG 攤位擺設', p:'Renadog 攤位'},
+      {type:'task', t:'10:30 – 11:00', f:'限動拍攝 ＋ 攤位確認', d:'RENADOG 限動拍攝；確認備品', p:'Renadog 攤位'},
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 12:10', f:'入場支援 QIX', d:'學員入場期間支援 QIX 攤位', p:'QIX 攤位'},
+      {type:'task', t:'12:10 – 14:20', f:'RENADOG 銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'RENADOG 銷售', d:'休息時段銷售', p:'Renadog 攤位'},
+      {type:'task', t:'15:10 – 17:10', f:'RENADOG 銷售 ＋ 移動禮物袋', d:'持續銷售；同時協助把 5/6 禮物袋移到結帳區', p:'Renadog 攤位 ↔ 結帳區'},
+      {type:'task', t:'17:10 – 17:20', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'18:00', f:'集合散場', d:'攤位整理，確認收場', p:'Renadog 攤位'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'攤位準備', d:'RENADOG ＋ QIX 攤位準備就緒', p:'Renadog 攤位'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'RENADOG 銷售', d:'入場時支援 QIX；之後銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'RENADOG 銷售', d:'休息時段銷售', p:'Renadog 攤位'},
+      {type:'task', t:'15:10 – 17:10', f:'RENADOG 銷售', d:'持續銷售', p:'Renadog 攤位'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'Renadog 攤位開始部分整理', p:'Renadog 攤位'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'Renadog 攤位備品裝箱打包', p:'Renadog 攤位'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'kalen', name:'Kalen', avatar:'K', role:'RENADOG 銷售 · QA 遞麥', area:'Renadog 攤位',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'06:00 – 09:00', f:'南下集合', d:'從北部出發前往台中', p:'各自出發'},
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設 ＋ 座位定位', d:'Renadog 攤位擺設；協助保留席定位（第一排模特犬家長位）', p:'Renadog 攤位'},
+      {type:'task', t:'10:30 – 11:00', f:'攤位確認', d:'確認 Renadog 備品', p:'Renadog 攤位'},
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'RENADOG 銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'RENADOG 銷售', d:'休息時段銷售', p:'Renadog 攤位'},
+      {type:'task', t:'15:10 – 17:10', f:'RENADOG 銷售 ＋ 移動禮物袋', d:'持續銷售；協助把 5/6 禮物袋移到結帳區', p:'Renadog 攤位 ↔ 結帳區'},
+      {type:'task', t:'17:10 – 17:20', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'Renadog 攤位'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'禮物袋定位 ＋ 攤位準備', d:'禮物袋擺放到椅子上；Renadog 攤位準備就緒', p:'觀眾區 ↔ Renadog 攤位'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'RENADOG 銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'14:20 – 14:30', f:'QA 遞麥', d:'協助遞麥給提問學員', p:'舞台、觀眾區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'RENADOG 銷售', d:'休息時段銷售', p:'Renadog 攤位'},
+      {type:'task', t:'15:10 – 17:10', f:'RENADOG 銷售', d:'持續銷售', p:'Renadog 攤位'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'Renadog 攤位開始部分整理', p:'Renadog 攤位'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 RENADOG', p:'Renadog 攤位'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'Renadog 攤位備品裝箱打包', p:'Renadog 攤位'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'ji', name:'季穎', avatar:'季', role:'報到 · 場地管理 · 攤位支援', area:'報到處 · 全場',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00', f:'廠商點交', d:'廠商進場點交', p:'李方艾美'},
+      {type:'task', t:'09:00 – 10:00', f:'休息室準備', d:'備妥水、點心、垃圾桶、工具', p:'休息室'},
+      {type:'task', t:'09:00 – 10:00', f:'舞台陳列定位', d:'美容桌椅＋工具＋攝影角度定位（等老闆確認）', p:'舞台'},
+      {type:'task', t:'10:00 – 10:30', f:'禮物袋定位引導', d:'引導奕霖、Kalen 擺放禮物袋；引導保留席定位', p:'觀眾區'},
+      {type:'task', t:'10:30 – 11:00', f:'攤位最終確認', d:'逐一與各攤位確認備品及活動內容', p:'各攤位'},
+      {type:'task', t:'11:00', f:'放飯', d:'發便當', p:'—'},
+      {type:'task', t:'11:15 – 11:30', f:'全員 Standby', d:'到定位點等待', p:'各定位點'},
+      {type:'task', t:'11:30 – 12:10', f:'學員報到', d:'報到 / 蓋章', p:'報到區'},
+      {type:'free', t:'12:10 – 14:20', f:'自由時間', d:'（可在報到區或攤位區支援）'},
+      {type:'task', t:'14:20 – 14:30', f:'走廊垃圾桶確認', d:'確認走廊垃圾桶是否需清理', p:'走廊'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:55 – 15:00', f:'場邊提醒', d:'提醒休息時間結束，請學員入座', p:'結帳區旁'},
+      {type:'task', t:'15:10 – 17:10', f:'移動禮物袋', d:'把 5/6 的禮物袋移到結帳區', p:'結帳區'},
+      {type:'task', t:'17:50', f:'離場提醒', d:'場邊提醒學員離場時間', p:'場邊'},
+      {type:'task', t:'17:50 – 18:00', f:'環境整理', d:'舞台、走廊垃圾桶清理', p:'舞台、走廊'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'—'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'舞台 ＋ 休息室準備', d:'舞台工具確認；休息室備妥水、點心、垃圾桶、工具', p:'舞台＋休息室'},
+      {type:'task', t:'11:15 – 11:20', f:'放飯', d:'發便當', p:'—'},
+      {type:'task', t:'11:15 – 11:30', f:'全員 Standby', d:'到定位點等待', p:'各定位點'},
+      {type:'task', t:'11:30 – 12:10', f:'學員報到', d:'報到 / 蓋章', p:'報到區'},
+      {type:'free', t:'12:10 – 14:20', f:'自由時間', d:'（可在報到區或攤位區支援）'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'場邊提醒', d:'提醒休息時間結束，請學員入座', p:'結帳區旁'},
+      {type:'task', t:'17:25 – 17:50', f:'結帳區支援', d:'支援結帳區尾場作業', p:'結帳區'},
+      {type:'task', t:'17:50 – 18:15', f:'環境整理 ＋ 打包', d:'舞台收拾、休息室整理、垃圾分類；協助打包裝箱', p:'舞台、休息室'},
+      {type:'task', t:'18:30 –', f:'撤場點交', d:'與 Kent 完成撤場點交', p:'—'},
+    ]},
+   ]},
+ { key:'ting', name:'廷廷', avatar:'廷', role:'入口蓋章 · QIX 銷售', area:'入口 · QIX 攤位',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'06:00 – 09:00', f:'南下集合', d:'從北部出發前往台中', p:'各自出發'},
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設', d:'QIX 攤位擺設', p:'QIX 攤位'},
+      {type:'task', t:'10:30 – 11:00', f:'限動拍攝 ＋ 攤位確認', d:'QIX 限動拍攝（攤位設置完成後才執行）；確認備品', p:'QIX 攤位'},
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 12:10', f:'入口蓋章', d:'蓋章放行、引導學員拍照', p:'入口'},
+      {type:'task', t:'12:10 – 14:20', f:'QIX 銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'free', t:'14:20 – 14:30', f:'自由時間', d:''},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'QIX 銷售', d:'休息時段銷售', p:'QIX 攤位'},
+      {type:'task', t:'15:10 – 17:25', f:'QIX 銷售', d:'持續銷售', p:'QIX 攤位'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'QIX 攤位'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'禮物袋定位 ＋ 攤位準備', d:'禮物袋擺放到椅子上；QIX 攤位準備就緒', p:'觀眾區 ↔ QIX 攤位'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 12:10', f:'入口蓋章', d:'蓋章放行、引導學員', p:'入口'},
+      {type:'task', t:'12:10 – 14:20', f:'QIX 銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:25', f:'QIX 銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'QIX 攤位開始部分整理', p:'QIX 攤位'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'17:30 – 18:00', f:'座位區收拾', d:'確認垃圾、回收手寫板', p:'觀眾區'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'QIX 攤位備品裝箱打包', p:'QIX 攤位'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'lin', name:'奕霖', avatar:'霖', role:'入口蓋章 · QIX 銷售', area:'入口 · QIX 攤位',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'06:00 – 09:00', f:'南下集合', d:'從北部出發前往台中', p:'各自出發'},
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設 ＋ 禮物袋定位', d:'QIX 攤位擺設；協助禮物袋擺放到椅子上', p:'QIX 攤位 ↔ 觀眾區'},
+      {type:'task', t:'10:30 – 11:00', f:'限動拍攝 ＋ 攤位確認', d:'QIX 限動拍攝；確認備品', p:'QIX 攤位'},
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 12:10', f:'入口蓋章', d:'蓋章放行、引導學員拍照', p:'入口'},
+      {type:'task', t:'12:10 – 14:20', f:'QIX 銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'free', t:'14:20 – 14:30', f:'自由時間', d:''},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'QIX 銷售', d:'休息時段銷售', p:'QIX 攤位'},
+      {type:'task', t:'15:10 – 17:25', f:'QIX 銷售', d:'持續銷售', p:'QIX 攤位'},
+      {type:'task', t:'17:25 – 17:50', f:'手寫板回收', d:'出口收回手寫板', p:'出口'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'QIX 攤位'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'禮物袋定位 ＋ 攤位準備', d:'禮物袋擺放到椅子上；QIX 攤位準備就緒', p:'觀眾區 ↔ QIX 攤位'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 12:10', f:'入口蓋章', d:'蓋章放行、引導學員', p:'入口'},
+      {type:'task', t:'12:10 – 14:20', f:'QIX 銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:25', f:'QIX 銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'QIX 攤位開始部分整理', p:'QIX 攤位'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 AFPET ＋ QIX', p:'QIX 攤位'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'各攤位備品裝箱打包', p:'各攤位'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'doreen', name:'Doreen', avatar:'D', role:'收銀 · 取貨', area:'結帳區',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設', d:'結帳區擺設（發票、收據、刷卡機、零錢、紙袋等）', p:'結帳區'},
+      {type:'task', t:'10:30 – 11:00', f:'攤位最終確認', d:'確認結帳區備品', p:'結帳區'},
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'收銀 · 取貨', d:'學員購物收銀、取貨作業', p:'結帳區'},
+      {type:'free', t:'14:20 – 14:30', f:'自由時間', d:''},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'收銀 · 取貨', d:'休息時段收銀取貨', p:'結帳區'},
+      {type:'task', t:'15:10 – 17:10', f:'收銀 · 取貨 ＋ 移動禮物袋', d:'持續收銀取貨；協助把 5/6 禮物袋移到結帳區', p:'結帳區'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場收銀 · 取貨', d:'尾場銷售時段收銀取貨', p:'結帳區'},
+      {type:'task', t:'18:00', f:'集合散場', d:'結帳區整理收場', p:'結帳區'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'攤位準備', d:'結帳區準備就緒', p:'結帳區'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'收銀 · 取貨', d:'學員購物收銀、取貨作業', p:'結帳區'},
+      {type:'free', t:'14:20 – 14:30', f:'自由時間', d:''},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 15:00', f:'收銀 · 取貨', d:'休息時段收銀取貨', p:'結帳區'},
+      {type:'task', t:'15:10 – 17:50', f:'收銀 · 取貨', d:'持續收銀取貨', p:'結帳區'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'結帳區開始部分整理', p:'結帳區'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'結帳區備品裝箱打包', p:'結帳區'},
+    ]},
+   ]},
+ { key:'nuo', name:'阿諾', avatar:'諾', role:'收銀 · 取貨', area:'結帳區',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'06:00 – 09:00', f:'南下集合', d:'從北部出發前往台中', p:'各自出發'},
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設', d:'結帳區擺設協助', p:'結帳區'},
+      {type:'free', t:'10:30 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'收銀 · 取貨', d:'學員購物收銀、取貨作業', p:'結帳區'},
+      {type:'free', t:'14:20 – 14:30', f:'自由時間', d:''},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'收銀 · 取貨', d:'休息＋下半場＋尾場 持續收銀取貨', p:'結帳區'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'結帳區備品裝箱打包', p:'結帳區'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'結帳區'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'禮物袋定位 ＋ 攤位準備', d:'禮物袋擺放到椅子上；結帳區準備就緒', p:'觀眾區 ↔ 結帳區'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:30', f:'收銀 · 取貨', d:'全天收銀取貨', p:'結帳區'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'收銀 · 取貨', d:'全天收銀取貨', p:'結帳區'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'結帳區部分整理', p:'結帳區'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'結帳區備品裝箱打包', p:'結帳區'},
+    ]},
+   ]},
+ { key:'xin', name:'新新', avatar:'新', role:'洗模特犬 · 剪刀銷售 · 控台螢幕切換', area:'DNS → Balmoni 剪刀',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'08:00 – 11:15', f:'洗模特犬', d:'DNS 沙龍洗模特犬（家長直送到店）', p:'DNS 寵物沙龍'},
+      {type:'task', t:'11:15 – 11:30', f:'模特犬前往會場', d:'帶模特犬＋老師從 DNS 前往李方艾美', p:'DNS → 李方艾美'},
+      {type:'task', t:'11:30 – 14:20', f:'剪刀銷售 ＋ 控台螢幕切換', d:'銷售 Balmoni 剪刀；同時負責控台螢幕切換', p:'Balmoni 剪刀'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'剪刀銷售 ＋ 控台螢幕切換', d:'銷售 Balmoni 剪刀；同時負責控台螢幕切換', p:'Balmoni 剪刀'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'Balmoni 剪刀'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'08:00 – 11:15', f:'洗模特犬', d:'DNS 沙龍洗模特犬（家長直送到店）', p:'DNS 寵物沙龍'},
+      {type:'task', t:'11:15 – 11:30', f:'模特犬前往會場', d:'帶模特犬＋老師從 DNS 前往李方艾美', p:'DNS → 李方艾美'},
+      {type:'task', t:'11:30 – 14:20', f:'剪刀銷售 ＋ 控台螢幕切換', d:'銷售 Balmoni 剪刀；同時負責控台螢幕切換', p:'Balmoni 剪刀'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'剪刀銷售 ＋ 控台螢幕切換', d:'銷售 Balmoni 剪刀；同時負責控台螢幕切換', p:'Balmoni 剪刀'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'剪刀攤位部分整理', p:'Balmoni 剪刀'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'剪刀攤位備品裝箱打包', p:'Balmoni 剪刀'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'tong', name:'彤彤', avatar:'彤', role:'洗模特犬 · 剪刀銷售', area:'DNS → Balmoni 剪刀',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'08:00 – 11:15', f:'洗模特犬', d:'DNS 沙龍洗模特犬（家長直送到店）', p:'DNS 寵物沙龍'},
+      {type:'task', t:'11:15 – 11:30', f:'模特犬前往會場', d:'帶模特犬＋老師從 DNS 前往李方艾美', p:'DNS → 李方艾美'},
+      {type:'task', t:'11:30 – 14:20', f:'剪刀銷售', d:'銷售 Balmoni 剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'剪刀銷售', d:'銷售 Balmoni 剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'Balmoni 剪刀'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'08:00 – 11:15', f:'洗模特犬', d:'DNS 沙龍洗模特犬（家長直送到店）', p:'DNS 寵物沙龍'},
+      {type:'task', t:'11:15 – 11:30', f:'模特犬前往會場', d:'帶模特犬＋老師從 DNS 前往李方艾美', p:'DNS → 李方艾美'},
+      {type:'task', t:'11:30 – 14:20', f:'剪刀銷售', d:'銷售 Balmoni 剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'剪刀銷售', d:'銷售 Balmoni 剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'剪刀攤位部分整理', p:'Balmoni 剪刀'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售剪刀', p:'Balmoni 剪刀'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'剪刀攤位備品裝箱打包', p:'Balmoni 剪刀'},
+    ]},
+   ]},
+ { key:'xiu', name:'秀樺', avatar:'秀', role:'Balmoni 電剪銷售 ＋ 支援典範', area:'Balmoni 電剪 ＋ 典範',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'task', t:'06:00 – 09:00', f:'南下集合', d:'從北部出發前往台中', p:'各自出發'},
+      {type:'task', t:'09:00 – 10:30', f:'攤位擺設', d:'Balmoni 電剪 ＋ 典範攤位擺設', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'task', t:'10:30 – 11:00', f:'攤位最終確認', d:'確認備品及活動內容', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'攤位銷售', d:'銷售 BALMONI 電剪、支援典範', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'free', t:'14:20 – 14:30', f:'自由時間', d:''},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:10', f:'攤位銷售', d:'休息＋下半場持續銷售；協助把 5/6 禮物袋移到結帳區', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 BALMONI 電剪', p:'Balmoni 電剪'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'Balmoni 電剪'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'task', t:'11:00 – 11:15', f:'攤位準備', d:'Balmoni 電剪 ＋ 典範攤位準備就緒', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'free', t:'11:15 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:20', f:'攤位銷售', d:'銷售 BALMONI 電剪、支援典範', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:10', f:'攤位銷售', d:'銷售 BALMONI 電剪、支援典範', p:'Balmoni 電剪 ＋ 典範'},
+      {type:'task', t:'16:30 – 17:00', f:'攤位整理（邊賣邊收）', d:'典範攤位部分整理', p:'典範'},
+      {type:'task', t:'17:25 – 17:50', f:'尾場銷售', d:'銷售 BALMONI 電剪', p:'Balmoni 電剪'},
+      {type:'task', t:'17:50 – 18:15', f:'打包裝箱', d:'各攤位備品裝箱打包', p:'各攤位'},
+      {type:'task', t:'18:00 –', f:'聚餐', d:'老師、業務、原廠客人聚餐', p:'待確認'},
+    ]},
+   ]},
+ { key:'zhen', name:'珍珍', avatar:'珍', role:'學員招呼 · 座椅確認', area:'全場 · 觀眾區',
+   days:[
+    { date:'5/5', label:'DAY 1', slots:[
+      {type:'free', t:'09:00 – 09:00', f:'自由時間', d:''},
+      {type:'task', t:'09:00 – 09:30', f:'座椅定位確認', d:'觀眾區座椅定位確認（要在現場確認調整）', p:'觀眾區'},
+      {type:'free', t:'09:30 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:30', f:'學員招呼', d:'全場學員招呼、引導', p:'全場'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'學員招呼', d:'全場學員招呼、引導', p:'全場'},
+      {type:'task', t:'18:00', f:'集合散場', d:'確認收場', p:'全場'},
+    ]},
+    { date:'5/6', label:'DAY 2', slots:[
+      {type:'free', t:'11:00 – 11:30', f:'自由時間', d:''},
+      {type:'task', t:'11:30 – 14:30', f:'學員招呼', d:'全場學員招呼、引導', p:'全場'},
+      {type:'task', t:'14:30 – 14:40', f:'大合照', d:'全體大合照（2 位老師＋學員，不帶狗）', p:'舞台＋觀眾區'},
+      {type:'task', t:'14:40 – 17:50', f:'學員招呼', d:'全場學員招呼、引導', p:'全場'},
+    ]},
+   ]},
+];
+
+// ════════════════════════════════════════
+//  RENDER OVERVIEW
+// ════════════════════════════════════════
+const HL_NAMES = ['Michael','Jennifer','Kevin','小隻','EM','Mei','Kalen','季穎','廷廷','奕霖','Doreen','阿諾','新新','彤彤','秀樺','珍珍'];
+
+function renderOverview(data, tbodyId){
+  const tb = document.getElementById(tbodyId);
+  data.forEach(row => {
+    if(row.phase){
+      const tr = document.createElement('tr');
+      tr.className='phase-row';
+      tr.innerHTML=`<td colspan="6">${row.phase}</td>`;
+      tb.appendChild(tr); return;
+    }
+    const tr = document.createElement('tr');
+    tr.innerHTML=`
+      <td class="t-time">${row.t||''}</td>
+      <td class="t-flow">${row.f||''}</td>
+      <td class="t-detail">${row.d||''}</td>
+      <td class="t-pos">${row.p||''}</td>
+      <td class="t-owners">${(row.o||[]).map(o=>{
+        const hl=HL_NAMES.some(n=>o===n||o.startsWith(n));
+        return `<span class="otag${hl?' hl':''}">${o}</span>`;
+      }).join('')}</td>
+      <td class="t-note">${row.n||''}</td>
+    `;
+    tb.appendChild(tr);
+  });
+}
+renderOverview(OV05,'ov-0505');
+renderOverview(OV06,'ov-0506');
+
+// ════════════════════════════════════════
+//  RENDER PERSON BUTTONS
+// ════════════════════════════════════════
+const btnsEl = document.getElementById('person-btns');
+PEOPLE.forEach(p=>{
+  const btn=document.createElement('button');
+  btn.className='pbtn';
+  btn.textContent=p.name;
+  btn.setAttribute('data-key',p.key);
+  btn.onclick=()=>selectPerson(p.key);
+  btnsEl.appendChild(btn);
+});
+
+let currentKey=null;
+function selectPerson(key){
+  if(currentKey===key)return;
+  currentKey=key;
+  document.querySelectorAll('.pbtn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-key')===key));
+  const person=PEOPLE.find(p=>p.key===key);
+  if(!person)return;
+  const display=document.getElementById('personal-display');
+  display.innerHTML='';
+  const wrap=document.createElement('div');
+  wrap.className='person-content';
+
+  // Header
+  wrap.innerHTML=`
+    <div class="person-header">
+      <div class="person-avatar">${person.avatar}</div>
+      <div>
+        <div class="person-name">${person.name}</div>
+        <div class="person-role">${person.role}</div>
+        <span class="person-area">📍 ${person.area}</span>
+      </div>
+    </div>
+  `;
+
+  person.days.forEach(day=>{
+    const block=document.createElement('div');
+    block.className='day-block';
+    let html=`
+      <div class="day-block-title">
+        <span class="day-block-badge">${day.date}</span>
+        <span class="day-block-label">${day.label}</span>
+      </div>
+    `;
+    day.slots.forEach(slot=>{
+      if(slot.type!=='task') return;
+      html+=`
+        <div class="slot-row is-task">
+          <div class="slot-time">${slot.t||'—'}</div>
+          <div class="slot-body">
+            <div class="slot-phase">${slot.f||''}</div>
+            <div class="slot-task">${slot.f||''}</div>
+            ${slot.d?`<div class="slot-detail">${slot.d}</div>`:''}
+            <div class="slot-meta">
+              ${slot.p?`<span class="chip chip-pos">📍 ${slot.p}</span>`:''}
+              ${slot.n?`<span class="chip chip-note">📝 ${slot.n}</span>`:''}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    block.innerHTML=html;
+    wrap.appendChild(block);
+  });
+  display.appendChild(wrap);
+}
+
+// ════════════════════════════════════════
+//  人員分工頁 渲染
+// ════════════════════════════════════════
+const staffGrid = document.getElementById('staff-grid');
+
+const kentCard = document.createElement('div');
+kentCard.className = 'staff-card';
+kentCard.innerHTML = `
+  <div class="staff-avatar-name">
+    <div class="staff-avatar">K</div>
+    <div class="staff-name">Kent（陳泰哥）</div>
+  </div>
+  <div class="staff-role">全活動調度、突發狀況處理、撤場點交、對講機統籌</div>
+  <span class="staff-area-badge">📍 全場（場地中央）</span>
+`;
+staffGrid.appendChild(kentCard);
+
+PEOPLE.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'staff-card';
+  card.innerHTML = `
+    <div class="staff-avatar-name">
+      <div class="staff-avatar">${p.avatar}</div>
+      <div class="staff-name">${p.name}</div>
+    </div>
+    <div class="staff-role">${p.role}</div>
+    <span class="staff-area-badge">📍 ${p.area}</span>
+  `;
+  staffGrid.appendChild(card);
+});
+
+// ════════════════════════════════════════
+//  價格表 渲染
+// ════════════════════════════════════════
+const HUAER_PRODUCTS = [
+  { brand:'Basics', name:'深層/蓬鬆/柔順 3桶任選', orig:'10,500', sale:'8,100' },
+  { brand:'Basics', name:'草本(小盒)+小神噴', orig:'2,150/2,250', sale:'1,800/1,900' },
+  { brand:'Basics', name:'草本(包)+小神噴', orig:'6,250/6,750', sale:'5,500/6,000', note:'贈搖搖杯' },
+  { brand:'Balmoni', name:'多巴胺小電剪 紫/綠', orig:'899', sale:'799' },
+  { brand:'Balmoni', name:'多巴胺電剪＋小電剪刀頭', orig:'1,399', sale:'1,199' },
+  { brand:'Balmoni', name:'多巴胺大電剪＋全刀頭＋加購套片999', orig:'3,749', sale:'3,448' },
+  { brand:'Balmoni', name:'玫瑰金貓排梳', orig:'980', sale:'' },
+  { brand:'Balmoni', name:'消光灰圓針梳', orig:'1,280', sale:'' },
+  { brand:'Balmoni', name:'消光抗靜電餐刀梳（新升級）', orig:'980', sale:'' },
+  { brand:'Balmoni', name:'彎排梳＋韓豐噴＋大針', orig:'2,960', sale:'2,650' },
+  { brand:'Balmoni', name:'大針＋餐刀梳', orig:'1,660', sale:'1,500' },
+  { brand:'Balmoni', name:'去油酶＋貓排梳', orig:'1,605', sale:'1,500' },
+  { brand:'Balmoni', name:'貓排梳＋小多巴胺', orig:'1,879', sale:'1,800' },
+  { brand:'Balmoni', name:'曲面中彎＋小拆結噴', orig:'1,880', sale:'1,750', note:'噴劑任選' },
+  { brand:'Balmoni＋Renadog', name:'大針＋Renadog噴劑(任選)', orig:'1,280', sale:'1,200' },
+  { brand:'Balmoni＋Renadog', name:'中針＋Renadog噴劑(任選)', orig:'1,180', sale:'1,100' },
+  { brand:'Balmoni 剪刀 BS440SG', name:'7吋十字直剪', orig:'4,260', sale:'3,600' },
+  { brand:'Balmoni 剪刀 BS70CV', name:'7吋30°VG10彎剪', orig:'3,660', sale:'3,360' },
+  { brand:'Milli.m', name:'6.25吋鑽石細修打薄剪', orig:'4,460', sale:'4,400' },
+  { brand:'Renadog', name:'洗劑 4 桶', orig:'10,800', sale:'10,000' },
+  { brand:'Renadog', name:'買1L噴劑送30ml小樣（限一人一個）', orig:'1,950', sale:'1,800' },
+  { brand:'Renadog', name:'粉紅泡泡 大包/盒裝', orig:'3,700/2,200', sale:'3,500/2,000' },
+  { brand:'Renadog', name:'火山泥 大包/盒裝', orig:'2,700/1,600', sale:'2,500/1,500' },
+  { brand:'JOYZZE', name:'C電剪', orig:'3,700', sale:'' },
+  { brand:'JOYZZE', name:'Falcon 送套片', orig:'', sale:'6,600/8,800', note:'送套片種類待確認' },
+  { brand:'JOYZZE', name:'工具收納架', orig:'1,200', sale:'600' },
+  { brand:'JOYZZE', name:'滿萬即贈韓國關節錠', orig:'699', sale:'消費加購499' },
+  { brand:'JOYZZE', name:'圓針梳＋韓豐噴', orig:'1,880', sale:'1,750' },
+];
+
+const priceWrap = document.getElementById('price-huaer-tables');
+// 依品牌分組
+const brandMap = {};
+HUAER_PRODUCTS.forEach(p => {
+  if(!brandMap[p.brand]) brandMap[p.brand] = [];
+  brandMap[p.brand].push(p);
+});
+Object.entries(brandMap).forEach(([brand, items]) => {
+  const head = document.createElement('div');
+  head.className = 'price-brand-head';
+  head.textContent = brand;
+  priceWrap.appendChild(head);
+  const t = document.createElement('table');
+  t.className = 'price-table';
+  t.innerHTML = `<thead><tr><th>品名</th><th>原價</th><th>GDAY 優惠價</th><th>備註</th></tr></thead>`;
+  const tb = document.createElement('tbody');
+  items.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="p-name">${item.name}</td><td class="p-orig">${item.orig||'—'}</td><td class="p-sale">${item.sale||'—'}</td><td class="p-note">${item.note||''}</td>`;
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  priceWrap.appendChild(t);
+});
+
+// ════════════════════════════════════════
+//  對講機名單 渲染
+// ════════════════════════════════════════
+const RADIO_LIST = [
+  { name:'Kent', note:'★ 主場控' },
+  { name:'Michael', note:'' },
+  { name:'Jennifer', note:'' },
+  { name:'季穎', note:'' },
+  { name:'EM', note:'' },
+  { name:'廷廷', note:'' },
+  { name:'Mei', note:'' },
+  { name:'Doreen', note:'' },
+  { name:'新新', note:'' },
+  { name:'小隻', note:'' },
+];
+
+const radioList = document.getElementById('radio-list');
+RADIO_LIST.forEach((person, i) => {
+  const row = document.createElement('div');
+  row.style.cssText = `display:grid;grid-template-columns:60px 1fr 1fr;padding:13px 20px;border-bottom:1px solid var(--line);align-items:center;${i===0?'background:var(--orange-lt);':i%2===0?'background:var(--bg);':'background:var(--bg2);'}`;
+  row.innerHTML = `
+    <span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--orange);">${String(i+1).padStart(2,'0')}</span>
+    <span style="font-size:15px;font-weight:700;color:var(--ink);">${person.name}</span>
+    <span style="font-size:12px;color:${person.note?'var(--orange)':'var(--ink3)'};font-weight:${person.note?'700':'400'};">${person.note||'—'}</span>
+  `;
+  radioList.appendChild(row);
+});
+
+// ════════════════════════════════════════
+//  TAB SWITCH
+// ════════════════════════════════════════
+const TAB_IDS = ['summary','schedule','venue','staff','price','radio','overview','personal'];
+function switchMain(tab){
+  document.querySelectorAll('.main-tab').forEach((b,i)=>{
+    b.classList.toggle('active', TAB_IDS[i]===tab);
+  });
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+tab).classList.add('active');
+}
+</script>
+</body>
+</html>
