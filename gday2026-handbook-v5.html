@@ -439,6 +439,7 @@ td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
     <button class="main-tab" onclick="switchMain('radio')">📻 對講機名單</button>
     <button class="main-tab" onclick="switchMain('overview')">📋 整體分工總覽</button>
     <button class="main-tab" onclick="switchMain('personal')">🎯 個人任務查詢</button>
+    <button class="main-tab" onclick="switchMain('transport')">🚗 交通與住宿</button>
   </nav>
 </div>
 
@@ -809,6 +810,94 @@ td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
       <div class="placeholder-text">點選上方成員名字，查看個人工作安排</div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- ══ PAGE: 交通與住宿 ══ -->
+<div class="page" id="page-transport">
+<div class="info-page">
+
+  <div class="ov-day-tabs">
+    <button class="ov-day-tab tr-sub-tab active" onclick="switchTransport('hotel')">🏨 住宿說明</button>
+    <button class="ov-day-tab tr-sub-tab" onclick="switchTransport('traffic')">🚗 交通安排</button>
+  </div>
+
+  <!-- ── 住宿說明 ── -->
+  <div class="ov-subpage tr-subpage active" id="tr-sub-hotel">
+
+    <div style="background:#fff8f7;border:1px solid #f5c6c0;border-left:4px solid #c0392b;border-radius:6px;padding:16px 18px;margin-bottom:20px;font-size:13px;line-height:2;color:var(--ink2);">
+      <div style="font-weight:900;color:#c0392b;margin-bottom:8px;">⚠️ 注意事項</div>
+      <div>1. 15:00 入住，12:00 退房</div>
+      <div style="font-weight:900;color:#c0392b;">2. 入住時報名字就好</div>
+      <div>3. 一間房提供一份早餐，另一位可早上加購即可（$200 / 人）</div>
+      <div>4. 特約停車場：停佳安停車場</div>
+      <div>5. 需自備盥洗用品</div>
+    </div>
+
+    <div class="info-section-title" style="margin-bottom:10px;">🛏️ 房間配置</div>
+    <div class="table-scroll">
+      <table class="price-table">
+        <thead><tr><th>姓名</th><th>房型</th><th>入住日期</th></tr></thead>
+        <tbody>
+          <tr><td class="p-name">M、J</td><td>精緻雙人房（一床）</td><td>5/3 – 5/7</td></tr>
+          <tr><td class="p-name">Kevin</td><td>標準雙人房（一床）</td><td>5/4 – 5/7</td></tr>
+          <tr><td class="p-name">彤彤、Mei</td><td>精緻雙人房（2床）</td><td>5/4 – 5/7</td></tr>
+          <tr><td class="p-name">Doreen、秀樺</td><td>精緻雙人房（2床）</td><td>5/4 – 5/7</td></tr>
+          <tr><td class="p-name">EM、季穎</td><td>精緻雙人房（2床）</td><td>5/4 – 5/7</td></tr>
+          <tr><td class="p-name">Kent</td><td>標準雙人房（一床）</td><td>5/5 – 5/7</td></tr>
+          <tr><td class="p-name">冠穎</td><td>標準雙人房（一床）</td><td>5/5 – 5/7</td></tr>
+          <tr><td class="p-name">廷廷、奕霖</td><td>精緻雙人房（一床）</td><td>5/5 – 5/7</td></tr>
+          <tr><td class="p-name">阿諾、Kalen</td><td>精緻雙人房（2床）</td><td>5/4 – 5/7</td></tr>
+          <tr><td class="p-name">小筑、雅琪</td><td>精緻雙人房（2床）</td><td>5/4 – 5/7</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 交通安排 ── -->
+  <div class="ov-subpage tr-subpage" id="tr-sub-traffic">
+
+    <div class="price-brand-head">📅 5/4 前置日</div>
+    <div class="table-scroll">
+      <table class="price-table">
+        <thead><tr><th>時間</th><th>車輛</th><th>人員</th><th>地點 / 說明</th></tr></thead>
+        <tbody>
+          <tr><td class="p-sale">09:00 – 12:00</td><td>TESLA</td><td>老闆、季穎、EM、Doreen</td><td>公司集合</td></tr>
+          <tr><td class="p-sale">09:40 – 11:30</td><td>小隻車</td><td>Jennifer、小隻、老師 2 位</td><td>台中機場 LJ735 接機</td></tr>
+          <tr><td class="p-sale">09:40 – 11:30</td><td>新新車</td><td>新新（含行李）</td><td>台中機場 LJ735 接機</td></tr>
+          <tr><td class="p-sale">09:40 – 11:30</td><td>Kevin 車</td><td>Kevin、Gahyung</td><td>台中機場 LJ735 接機</td></tr>
+          <tr><td class="p-sale">13:30 – 15:00</td><td>大眾交通</td><td>Changwoo ＋ 韓方 2</td><td>桃園 CZ3097</td></tr>
+          <tr><td class="p-sale">14:30 – 15:00</td><td>TESLA、小隻車、新新車、Kevin</td><td>AFPET ＋ 韓方</td><td>前往酒店</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="price-brand-head" style="margin-top:20px;">📅 5/5 活動 DAY 1</div>
+    <div class="table-scroll">
+      <table class="price-table">
+        <thead><tr><th>時間</th><th>車輛</th><th>人員</th><th>地點 / 說明</th></tr></thead>
+        <tbody>
+          <tr><td class="p-sale">06:00 – 09:00</td><td>Kalen 車</td><td>Kalen、Kent、阿諾</td><td>自行集合</td></tr>
+          <tr><td class="p-sale">06:00 – 09:00</td><td>秀樺車</td><td>秀樺</td><td>自行前往</td></tr>
+          <tr><td class="p-sale">06:00 – 09:00</td><td>廷廷車</td><td>廷廷、奕霖</td><td>自行前往</td></tr>
+          <tr><td class="p-sale">08:00 – 11:15</td><td>TAXI</td><td>洗狗大隊</td><td>DNS → 會場</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="price-brand-head" style="margin-top:20px;">📅 5/6 活動 DAY 2</div>
+    <div class="table-scroll">
+      <table class="price-table">
+        <thead><tr><th>時間</th><th>車輛</th><th>人員</th><th>地點 / 說明</th></tr></thead>
+        <tbody>
+          <tr><td class="p-sale">08:00 – 11:15</td><td>TAXI</td><td>洗狗大隊</td><td>DNS → 會場</td></tr>
+          <tr><td class="p-sale">18:30 –</td><td>TAXI</td><td>M、J、隻、Mei、Kalen、秀樺、新新、奕霖、Kevin、Alley、雅琪、韓方 4、老師 2、薇達 2、亞蓓 2</td><td>晚餐 厝秘 大里店</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
 </div>
 </div>
 
@@ -1546,15 +1635,27 @@ document.addEventListener('DOMContentLoaded', updateHeaderH);
 updateHeaderH();
 
 // ════════════════════════════════════════
+//  TRANSPORT PAGE (static HTML above)
+// ════════════════════════════════════════
+
+// ════════════════════════════════════════
 //  TAB SWITCH
 // ════════════════════════════════════════
-const TAB_IDS = ['summary','schedule','venue','staff','price','radio','overview','personal'];
+const TAB_IDS = ['summary','schedule','venue','staff','price','radio','overview','personal','transport'];
 function switchOvDay(day){
   document.querySelectorAll('.ov-day-tab').forEach((b,i)=>{
     b.classList.toggle('active', ['day1','day2'][i]===day);
   });
   document.querySelectorAll('.ov-subpage').forEach(p=>p.classList.remove('active'));
   document.getElementById('ov-sub-'+day).classList.add('active');
+}
+
+function switchTransport(sub){
+  document.querySelectorAll('.tr-sub-tab').forEach((b,i)=>{
+    b.classList.toggle('active', ['hotel','traffic'][i]===sub);
+  });
+  document.querySelectorAll('.tr-subpage').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tr-sub-'+sub).classList.add('active');
 }
 
 function switchMain(tab){
