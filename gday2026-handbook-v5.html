@@ -59,6 +59,12 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink)
 
 /* ── PAGES ── */
 .page{display:none;}
+/* ── 整體分工 子頁籤 ── */
+.ov-day-tabs{display:flex;gap:8px;margin-bottom:20px;}
+.ov-day-tab{flex:1;padding:10px 0;text-align:center;background:var(--bg2);border:1px solid var(--line);border-radius:6px;font-size:13px;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .18s;letter-spacing:.03em;}
+.ov-day-tab.active{background:var(--orange);border-color:var(--orange);color:#fff;}
+.ov-subpage{display:none;}
+.ov-subpage.active{display:block;}
 .page.active{display:block;}
 
 /* ════ OVERVIEW ════ */
@@ -705,28 +711,37 @@ td.t-note{color:var(--ink3);font-size:12px;max-width:160px;}
 <!-- ══ PAGE 1: 整體分工 ══ -->
 <div class="page" id="page-overview">
 
-  <div class="day-section-head">
-    <span class="day-badge">05/05 DAY 1</span>
-    <span class="day-head-text">第一天 — 進場 · 開幕 · 課程</span>
-    <span class="day-head-sub">高雄/台中 集合 · 09:00 進場</span>
-  </div>
-  <div class="table-scroll">
-    <table>
-      <thead><tr><th>時間</th><th>活動流程</th><th>工作內容</th><th>位置</th><th>負責人</th><th>備註</th></tr></thead>
-      <tbody id="ov-0505"></tbody>
-    </table>
+  <div class="ov-day-tabs">
+    <button class="ov-day-tab active" onclick="switchOvDay('day1')">📅 5/5 DAY 1</button>
+    <button class="ov-day-tab" onclick="switchOvDay('day2')">📅 5/6 DAY 2</button>
   </div>
 
-  <div class="day-section-head" style="margin-top:24px;">
-    <span class="day-badge">05/06 DAY 2</span>
-    <span class="day-head-text">第二天 — 課程 · 銷售 · 撤場</span>
-    <span class="day-head-sub">11:00 進場 · 17:30 撤場</span>
+  <div class="ov-subpage active" id="ov-sub-day1">
+    <div class="day-section-head">
+      <span class="day-badge">05/05 DAY 1</span>
+      <span class="day-head-text">第一天 — 進場 · 開幕 · 課程</span>
+      <span class="day-head-sub">高雄/台中 集合 · 09:00 進場</span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>時間</th><th>活動流程</th><th>工作內容</th><th>位置</th><th>負責人</th><th>備註</th></tr></thead>
+        <tbody id="ov-0505"></tbody>
+      </table>
+    </div>
   </div>
-  <div class="table-scroll">
-    <table>
-      <thead><tr><th>時間</th><th>活動流程</th><th>工作內容</th><th>位置</th><th>負責人</th><th>備註</th></tr></thead>
-      <tbody id="ov-0506"></tbody>
-    </table>
+
+  <div class="ov-subpage" id="ov-sub-day2">
+    <div class="day-section-head">
+      <span class="day-badge">05/06 DAY 2</span>
+      <span class="day-head-text">第二天 — 課程 · 銷售 · 撤場</span>
+      <span class="day-head-sub">11:00 進場 · 17:30 撤場</span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>時間</th><th>活動流程</th><th>工作內容</th><th>位置</th><th>負責人</th><th>備註</th></tr></thead>
+        <tbody id="ov-0506"></tbody>
+      </table>
+    </div>
   </div>
 
 </div>
@@ -1539,6 +1554,14 @@ updateHeaderH();
 //  TAB SWITCH
 // ════════════════════════════════════════
 const TAB_IDS = ['summary','schedule','venue','staff','price','radio','overview','personal'];
+function switchOvDay(day){
+  document.querySelectorAll('.ov-day-tab').forEach((b,i)=>{
+    b.classList.toggle('active', ['day1','day2'][i]===day);
+  });
+  document.querySelectorAll('.ov-subpage').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ov-sub-'+day).classList.add('active');
+}
+
 function switchMain(tab){
   document.querySelectorAll('.main-tab').forEach((b,i)=>{
     b.classList.toggle('active', TAB_IDS[i]===tab);
