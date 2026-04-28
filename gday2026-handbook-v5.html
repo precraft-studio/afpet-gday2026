@@ -1494,61 +1494,6 @@ PEOPLE.forEach(p => {
 // ════════════════════════════════════════
 //  價格表 渲染
 // ════════════════════════════════════════
-const HUAER_PRODUCTS = [
-  { brand:'Basics', name:'深層/蓬鬆/柔順 3桶任選', orig:'10,500', sale:'8,100' },
-  { brand:'Basics', name:'草本(小盒)+小神噴', orig:'2,150/2,250', sale:'1,800/1,900' },
-  { brand:'Basics', name:'草本(包)+小神噴', orig:'6,250/6,750', sale:'5,500/6,000', note:'贈搖搖杯' },
-  { brand:'Balmoni', name:'多巴胺小電剪 紫/綠', orig:'899', sale:'799' },
-  { brand:'Balmoni', name:'多巴胺電剪＋小電剪刀頭', orig:'1,399', sale:'1,199' },
-  { brand:'Balmoni', name:'多巴胺大電剪＋全刀頭＋加購套片999', orig:'3,749', sale:'3,448' },
-  { brand:'Balmoni', name:'玫瑰金貓排梳', orig:'980', sale:'' },
-  { brand:'Balmoni', name:'消光灰圓針梳', orig:'1,280', sale:'' },
-  { brand:'Balmoni', name:'消光抗靜電餐刀梳（新升級）', orig:'980', sale:'' },
-  { brand:'Balmoni', name:'彎排梳＋韓豐噴＋大針', orig:'2,960', sale:'2,650' },
-  { brand:'Balmoni', name:'大針＋餐刀梳', orig:'1,660', sale:'1,500' },
-  { brand:'Balmoni', name:'去油酶＋貓排梳', orig:'1,605', sale:'1,500' },
-  { brand:'Balmoni', name:'貓排梳＋小多巴胺', orig:'1,879', sale:'1,800' },
-  { brand:'Balmoni', name:'曲面中彎＋小拆結噴', orig:'1,880', sale:'1,750', note:'噴劑任選' },
-  { brand:'Balmoni＋Renadog', name:'大針＋Renadog噴劑(任選)', orig:'1,280', sale:'1,200' },
-  { brand:'Balmoni＋Renadog', name:'中針＋Renadog噴劑(任選)', orig:'1,180', sale:'1,100' },
-  { brand:'Balmoni 剪刀 BS440SG', name:'7吋十字直剪', orig:'4,260', sale:'3,600' },
-  { brand:'Balmoni 剪刀 BS70CV', name:'7吋30°VG10彎剪', orig:'3,660', sale:'3,360' },
-  { brand:'Milli.m', name:'6.25吋鑽石細修打薄剪', orig:'4,460', sale:'4,400' },
-  { brand:'Renadog', name:'洗劑 4 桶', orig:'10,800', sale:'10,000' },
-  { brand:'Renadog', name:'買1L噴劑送30ml小樣（限一人一個）', orig:'1,950', sale:'1,800' },
-  { brand:'Renadog', name:'粉紅泡泡 大包/盒裝', orig:'3,700/2,200', sale:'3,500/2,000' },
-  { brand:'Renadog', name:'火山泥 大包/盒裝', orig:'2,700/1,600', sale:'2,500/1,500' },
-  { brand:'JOYZZE', name:'C電剪', orig:'3,700', sale:'' },
-  { brand:'JOYZZE', name:'Falcon 送套片', orig:'', sale:'6,600/8,800', note:'送套片種類待確認' },
-  { brand:'JOYZZE', name:'工具收納架', orig:'1,200', sale:'600' },
-  { brand:'JOYZZE', name:'滿萬即贈韓國關節錠', orig:'699', sale:'消費加購499' },
-  { brand:'JOYZZE', name:'圓針梳＋韓豐噴', orig:'1,880', sale:'1,750' },
-];
-
-const priceWrap = document.getElementById('price-huaer-tables');
-// 依品牌分組
-const brandMap = {};
-HUAER_PRODUCTS.forEach(p => {
-  if(!brandMap[p.brand]) brandMap[p.brand] = [];
-  brandMap[p.brand].push(p);
-});
-Object.entries(brandMap).forEach(([brand, items]) => {
-  const head = document.createElement('div');
-  head.className = 'price-brand-head';
-  head.textContent = brand;
-  priceWrap.appendChild(head);
-  const t = document.createElement('table');
-  t.className = 'price-table';
-  t.innerHTML = `<thead><tr><th>品名</th><th>原價</th><th>GDAY 優惠價</th><th>備註</th></tr></thead>`;
-  const tb = document.createElement('tbody');
-  items.forEach(item => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td class="p-name">${item.name}</td><td class="p-orig">${item.orig||'—'}</td><td class="p-sale">${item.sale||'—'}</td><td class="p-note">${item.note||''}</td>`;
-    tb.appendChild(tr);
-  });
-  t.appendChild(tb);
-  priceWrap.appendChild(t);
-});
 
 // ════════════════════════════════════════
 //  對講機名單 渲染
